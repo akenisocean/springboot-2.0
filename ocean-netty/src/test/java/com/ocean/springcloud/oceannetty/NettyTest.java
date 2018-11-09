@@ -1,5 +1,6 @@
 package com.ocean.springcloud.oceannetty;
 
+import com.ocean.springcloud.oceannetty.service.HelloServerInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
@@ -25,11 +26,11 @@ public class NettyTest {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup,workerGroup).//设置主从线程组
                     channel(NioServerSocketChannel.class)//设置Nio的双向通道
-                    .childHandler(null); //子处理器，用于处理workerGroup
+                    .childHandler(new HelloServerInitializer()); //子处理器，用于处理workerGroup
 
             //启动server,并且设置8088为启动的端口号，同时启动方式为同步
             ChannelFuture future = serverBootstrap.bind(8088).sync();
-            //监听关闭channel,设置位同步方式
+            //监听关闭channel,设置为同步方式
             future.channel().closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully();

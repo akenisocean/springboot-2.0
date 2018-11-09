@@ -1,12 +1,12 @@
-package com.ocean.springcloud.oceanrabbitmqproducer2;
+package com.ocean.springcloud.oceannetty;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OceanRabbitmqProducer2Application {
+public class OceanNettyApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OceanRabbitmqProducer2Application.class, args);
+		SpringApplication.run(OceanNettyApplication.class, args);
 	}
 }

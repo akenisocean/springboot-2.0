@@ -31,6 +31,10 @@ public class RabbitListener {
         System.err.println("开始接受数据了");
         System.err.println(msg.toString());
     }
-
+    @org.springframework.amqp.rabbit.annotation.RabbitListener(queues = {"exclusiveQueue"})
+    public void haha3(String msg){
+        System.err.println("开始接受数据了");
+        System.err.println(msg.toString());
+    }
 
 }

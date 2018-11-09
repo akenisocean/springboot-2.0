@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class OceanRabbitProducerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OceanRabbitProducerApplication.class, args);
+		SpringApplication.run(OceanRabbitProducerApplication.class, args);SpringApplication.run(OceanRabbitProducerApplication.class, args);
 	}
 }

@@ -1,4 +1,4 @@
-package com.ocean.springcloud.oceanrabbitmqproducer2;
+package com.ocean.springcloud.oceannetty;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class OceanRabbitmqProducer2ApplicationTests {
+public class OceanNettyApplicationTests {
 
 	@Test
 	public void contextLoads() {

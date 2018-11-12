@@ -31,7 +31,7 @@ public class WXServerInitializer extends ChannelInitializer<SocketChannel> {
         pipeline.addLast(new WebSocketServerProtocolHandler("/ws"));
 
         //添加自定义的handler
-        pipeline.addLast(null);
+        pipeline.addLast(new ChatHandler());
 
     }
 }

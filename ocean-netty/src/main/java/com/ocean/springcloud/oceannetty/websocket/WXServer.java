@@ -24,7 +24,7 @@ public class WXServer {
                     .channel(NioServerSocketChannel.class)
                     .childHandler(new WXServerInitializer());
 
-            ChannelFuture future = bootstrap.bind(8088).sync();
+            ChannelFuture future = bootstrap.bind(8080).sync();
             future.channel().closeFuture().sync();
         } finally {
              mainGroup.shutdownGracefully();

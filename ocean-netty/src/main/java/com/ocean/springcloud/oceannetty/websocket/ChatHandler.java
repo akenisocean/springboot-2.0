@@ -1,11 +1,14 @@
 package com.ocean.springcloud.oceannetty.websocket;
 
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.util.concurrent.GlobalEventExecutor;
+
+import java.time.LocalDateTime;
 
 /**
  * @author jack chao
@@ -21,6 +24,11 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
         //获取客户端发送过来的字符串
         String content = textSocket.text();
         System.err.println("接受到客户端的数据："+content.toString());
+
+        for (Channel channel: clients) {
+            channel.writeAndFlush(new TextWebSocketFrame("【服务器再】："+ LocalDateTime.now()+"接受到消息,消息为："+content));
+        }
+
     }
 
 

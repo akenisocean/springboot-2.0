@@ -1,0 +1,26 @@
+server:
+  port: 11100
+spring:
+  application:
+    name: ocean-hystrix-consumer
+eureka:
+  client:
+    service-url:
+       defaultZone: http://192.168.1.25:8761/eureka/
+
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 3000
+          semaphore:
+            timeoutInMilliseconds: 2000
+      fallback:
+        isolation:
+          semaphore:
+            maxConcurrentRequests: 200

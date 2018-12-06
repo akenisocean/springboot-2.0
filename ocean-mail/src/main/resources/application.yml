@@ -4,6 +4,7 @@ spring:
     username: jc164214878@163.com
     password: a164214878
     default-encoding: UTF-8
+    port:
 logging:
   level:
     root: info

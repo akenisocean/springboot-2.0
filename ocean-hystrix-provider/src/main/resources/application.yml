@@ -1,9 +1,13 @@
 server:
-  port: 11120
+  port: 9100
 spring:
   application:
     name: ocean-hystrix-provider
+  http:
+    encoding:
+      charset: UTF-8
 eureka:
   client:
     service-url:
-       defaultZone: http://192.168.1.25:8761/eureka/
+       defaultZone: http://39.108.9.37:8761/eureka/
+

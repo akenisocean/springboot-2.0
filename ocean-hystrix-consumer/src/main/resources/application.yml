@@ -10,8 +10,8 @@ eureka:
   client:
     service-url:
        defaultZone: http://39.108.9.37:8761/eureka/
-
-
+  instance:
+    health-check-url-path: /haha/baby
 
 hystrix:
   command:
@@ -27,3 +27,16 @@ hystrix:
         isolation:
           semaphore:
             maxConcurrentRequests: 200
+
+spring.cloud.client.hostname: happygiraffe
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+
+

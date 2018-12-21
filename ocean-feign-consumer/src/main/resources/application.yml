@@ -1,0 +1,43 @@
+server:
+  port: 9200
+spring:
+  application:
+    name: ocean-feign-consumer
+eureka:
+  client:
+    service-url:
+      defaultZone: http://39.108.9.37:8761/eureka/
+feign:
+  client:
+    config:
+      ocean-feign-provider:
+        connectTimeout: 3000
+        readTimeout: 4000
+        loggerLevel: FULL
+
+      ocean-feign-provider2:
+        connectTimeout: 3000
+        readTimeout: 7000
+        loggerLevel: basic
+  hystrix:
+    enabled: true
+
+
+hystrix:
+    command:
+        default:
+            execution:
+                timeout:
+                    # 是否启用断路器
+                    enabled: true
+                isolation:
+                    thread:
+                        # 超时时间 15s，要比其他组件时间长，不然重试机制就不起作用了
+                        timeoutInMilliseconds: 5000
+
+
+logback:
+    project:
+        level: DEBUG
+    spring:
+        level: INFO

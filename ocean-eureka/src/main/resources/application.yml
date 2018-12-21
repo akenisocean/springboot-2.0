@@ -7,9 +7,18 @@ eureka:
         service-url:
             defaultZone: http://192.168.1.25:8761/eureka/
     instance:
-#      prefer-ip-address: true
+      prefer-ip-address: true
       ip-address: 192.168.1.25
+      health-check-url-path: /haha/health
+      status-page-url-path: /haha/info
     server:
       enable-self-preservation: false
 server:
     port: 8761
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+

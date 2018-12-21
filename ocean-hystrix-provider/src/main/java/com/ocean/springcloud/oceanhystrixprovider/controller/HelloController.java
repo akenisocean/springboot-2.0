@@ -23,6 +23,7 @@ public class HelloController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        System.out.println("provider调用了");
 
         return "provider今天是个好日子";
     }

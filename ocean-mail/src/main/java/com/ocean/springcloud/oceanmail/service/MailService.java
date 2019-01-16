@@ -27,11 +27,6 @@ public class MailService {
     private JavaMailSender javaMailSender;
 
 
-
-    public void sayHello(){
-        System.out.println("hello world!");
-    }
-
     public void sendSimpleMail(String to,String subject,String content){
         //封装发送邮件的内容
         SimpleMailMessage mailMsg = new SimpleMailMessage();

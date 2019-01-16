@@ -1,11 +1,11 @@
 spring:
   mail:
-    host: smtp.163.com
-    username: jc164214878@163.com
-    password: a164214878
+    host: smtp.gmail.com
+    username: akenisocean164214878@gmail.com
+    password: jichao164214878
     default-encoding: UTF-8
-    port:
+    port: 465
+    test-connection: true
 logging:
   level:
     root: info
-

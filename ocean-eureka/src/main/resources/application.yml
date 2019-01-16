@@ -5,10 +5,10 @@ eureka:
         fetch-registry: false
         register-with-eureka: false
         service-url:
-            defaultZone: http://192.168.1.25:8761/eureka/
+            defaultZone: http://192.168.1.109:8761/eureka/
     instance:
       prefer-ip-address: true
-      ip-address: 192.168.1.25
+      ip-address: 192.168.1.109
       health-check-url-path: /haha/health
       status-page-url-path: /haha/info
     server:

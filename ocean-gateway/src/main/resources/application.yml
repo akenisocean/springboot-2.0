@@ -7,6 +7,7 @@ spring:
     gateway:
       metrics:
         enabled: true
+#        配置路由规则
       routes:
       - id: ocean-hystrix-consumer
         uri: http://localhost:9000
@@ -46,11 +47,13 @@ eureka:
     service-url:
        defaultZone: http://39.108.9.37:8761/eureka/
 
-
+# 设置actuator可以访问的端点
 management.endpoints.gateway.enable: true
 management.endpoints.web.exposure.include: '*'
 
+# 配置hystrix的超时时间
 hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 5000
 
 
+# 自定义一些配置
 remote.home: http://localhost:9000

@@ -11,15 +11,14 @@ import org.springframework.stereotype.Component;
 public class RabbitListener {
 
 
-
-     @org.springframework.amqp.rabbit.annotation.RabbitListener(queues = {"topic.queue"})
-    public void haha(String msg){
-         System.err.println("开始接受数据了");
-         System.err.println(msg.toString());
+    @org.springframework.amqp.rabbit.annotation.RabbitListener(queues = {"topic.queue"})
+    public void haha(String msg) {
+        System.err.println("开始接受数据了");
+        System.err.println(msg.toString());
     }
 
     @org.springframework.amqp.rabbit.annotation.RabbitListener(queues = {"delay.queue"})
-    public void haba(String msg){
+    public void haba(String msg) {
         System.err.println("delay开始接受数据了了");
         System.err.println(msg.toString());
 
@@ -27,12 +26,13 @@ public class RabbitListener {
 
 
     @org.springframework.amqp.rabbit.annotation.RabbitListener(queues = {"topic.queue"})
-    public void haha2(String msg){
+    public void haha2(String msg) {
         System.err.println("开始接受数据了");
         System.err.println(msg.toString());
     }
+
     @org.springframework.amqp.rabbit.annotation.RabbitListener(queues = {"exclusiveQueue"})
-    public void haha3(String msg){
+    public void haha3(String msg) {
         System.err.println("开始接受数据了");
         System.err.println(msg.toString());
     }

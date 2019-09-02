@@ -1,0 +1,89 @@
+version: "3.4"
+services:
+#  注册中心
+  ocean-eureka:
+    image: registry.cn-shanghai.aliyuncs.com/happygiraffe/ocean-eureka:1.0
+    deploy:
+      endpoint_mode: vip
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "256M"
+    networks:
+      - default
+    ports:
+      - "8761:8761"
+  ocean-gateway:
+    image: registry.cn-shanghai.aliyuncs.com/happygiraffe/ocean-gateway:1.0
+    deploy:
+      endpoint_mode: vip
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "512M"
+    networks:
+      - default
+    ports:
+      - "18000:18000"
+#   设置当前服务的依赖关系
+    depends_on:
+      - ocean-eureka
+
+  ocean-hystrix-consumer2:
+    image: registry.cn-shanghai.aliyuncs.com/happygiraffe/ocean-hystrix-consumer2:1.0
+    deploy:
+      replicas: 2
+      endpoint_mode: vip
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "512M"
+    networks:
+      - default
+    #   设置当前服务的依赖关系
+#    depends_on:
+#      - user-service
+
+
+#  course-edge-service:
+#    image: 镜像名称
+#    deploy:
+#      endpoint_mode: vip
+#      resources:
+#        limits:
+#          cpus: "0.2"
+#          memory: "512M"
+#    ports:
+#      - "8081:8081"
+##   设置当前服务的依赖关系
+#    depends_on:
+#      - user--edge-service
+
+
+#  api-gateway:
+#    image: 镜像名称
+#    deploy:
+#      endpoint_mode: vip
+#      resources:
+#        limits:
+#          cpus: "0.2"
+#          memory: "512M"
+#    ports:
+#      - "8080:8080"
+#       设置当前服务的依赖关系
+#    depends_on:
+#      - user-edge-service
+#      - course-edge-service
+
+
+
+networks:
+  default:
+    external:
+      name: dachao-overlay
+
+
+
+
+# 启动命令
+#docker stack deploy -c docker-services.yml dachao-microservice

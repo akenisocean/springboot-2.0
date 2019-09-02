@@ -1,0 +1,37 @@
+version: "3.4"
+services:
+  alpine:
+    image: alpine
+    command:
+      - "ping"
+      - "www.baidu.com"
+    networks:
+      - "dachao-overlay"
+    deploy:
+      replicas: 2
+      restart_policy:
+#        重启策略： 失败后就进行重启操作
+        condition: on-failure
+      resource:
+        limits:
+#          设置当前的cpu使用空间为0.1，对应的内存大小为50M
+          cpus: "0.1"
+          memory: 50M
+    depends_on:
+      - nginx
+  nginx:
+    image: nginx
+    networks:
+      - "dachao-overlay"
+    ports:
+      - "8080:80"
+
+networks:
+  dachao-overlay:
+    external: true
+
+
+
+
+ #  启动命令
+docker stack deploy -c docker-swarm-alpine.uml test1s

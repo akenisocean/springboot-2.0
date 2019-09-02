@@ -3,7 +3,6 @@ package com.ocean.springclouid.oceanrabbitmqconsumer.controlller;
 import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +18,10 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("/test")
 public class TestController {
+
+
+
+
     @GetMapping("/book")
     public ResponseEntity<Book> showBook() {
         Book book = Book.builder().name("java开发从入门到放弃").price(new BigDecimal("25.66").doubleValue()).build();

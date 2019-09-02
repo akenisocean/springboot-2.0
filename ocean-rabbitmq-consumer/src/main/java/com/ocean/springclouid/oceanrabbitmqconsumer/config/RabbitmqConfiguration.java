@@ -1,7 +1,5 @@
 package com.ocean.springclouid.oceanrabbitmqconsumer.config;
 
-import org.springframework.amqp.core.Queue;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -13,8 +11,10 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitmqConfiguration {
 
 
-    @Bean
-    public Queue queue(){
-        return new Queue("exclusiveQueue",true,true,false);
-    }
+//    @Bean
+//    public Queue queue(){
+//        return new Queue("dachao-test1",true,true,false);
+//    }
+
+
 }

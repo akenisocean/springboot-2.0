@@ -1,0 +1,10 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: ocean-hystrix-consumer
+  profiles:
+    active: @maven.profiles.activation@
+info:
+  version: @project.version@
+

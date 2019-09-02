@@ -4,114 +4,33 @@ spring:
   application:
     name: ocean-rabbitmq-consumer
   rabbitmq:
-    host: 192.168.1.240
+    host: 114.67.224.231
     port: 5672
     username: guest
     password: guest
     virtual-host: /
-
-
+#    消息回执
+    publisher-confirms: true
+    publisher-returns: true
+    template:
+      mandatory: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+  #    数据库和数据库线程池配置
   datasource:
-    druid:
-      ctrlcontract:
-        url: jdbc:mysql://192.168.1.118:3306/ctrlcontract?characterEncoding=UTF-8
-        username: ctrlcontract
-        password: glanway2017
-        initial-size: 1
-        max-active: 20
-        max-wait: 60000
-        min-idle: 1
-        time-between-eviction-runs-millis: 60000
-        min-evictable-idle-time-millis: 300000
-        validation-query: "SELECT 'x'"
-        test-while-idle: true
-        test-on-borrow: false
-        test-on-return: false
-        pool-prepared-statements: true
-        max-pool-prepared-statement-per-connection-size: 20
-        filters: stat
-      authcenter:
-        url: jdbc:mysql://192.168.1.118:3306/authcenter?characterEncoding=UTF-8
-        username: authcenter
-        password: glanway2017
-        initial-size: 1
-        max-active: 20
-        max-wait: 60000
-        min-idle: 1
-        time-between-eviction-runs-millis: 60000
-        min-evictable-idle-time-millis: 300000
-        validation-query: "SELECT 'x'"
-        test-while-idle: true
-        test-on-borrow: false
-        test-on-return: false
-        pool-prepared-statements: true
-        max-pool-prepared-statement-per-connection-size: 20
-        filters: stat
-      ctrlcommon:
-        url: jdbc:mysql://192.168.1.118:3306/ctrlcommon?characterEncoding=UTF-8
-        username: ctrlcommon
-        password: glanway2017
-        initial-size: 1
-        max-active: 20
-        max-wait: 60000
-        min-idle: 1
-        time-between-eviction-runs-millis: 60000
-        min-evictable-idle-time-millis: 300000
-        validation-query: "SELECT 'x'"
-        test-while-idle: true
-        test-on-borrow: false
-        test-on-return: false
-        pool-prepared-statements: true
-        max-pool-prepared-statement-per-connection-size: 20
-        filters: stat
-      ctrloperation:
-        url: jdbc:mysql://192.168.1.118:3306/ctrloperation?characterEncoding=UTF-8
-        username: ctrloperation
-        password: glanway2017
-        initial-size: 1
-        max-active: 20
-        max-wait: 60000
-        min-idle: 1
-        time-between-eviction-runs-millis: 60000
-        min-evictable-idle-time-millis: 300000
-        validation-query: "SELECT 'x'"
-        test-while-idle: true
-        test-on-borrow: false
-        test-on-return: false
-        pool-prepared-statements: true
-        max-pool-prepared-statement-per-connection-size: 20
-        filters: stat
-      ctrlproject:
-        url: jdbc:mysql://192.168.1.118:3306/ctrlproject?characterEncoding=UTF-8
-        username: ctrlproject
-        password: glanway2017
-        initial-size: 1
-        max-active: 20
-        max-wait: 60000
-        min-idle: 1
-        time-between-eviction-runs-millis: 60000
-        min-evictable-idle-time-millis: 300000
-        validation-query: "SELECT 'x'"
-        test-while-idle: true
-        test-on-borrow: false
-        test-on-return: false
-        pool-prepared-statements: true
-        max-pool-prepared-statement-per-connection-size: 20
-        filters: stat
-      ctrlcrm:
-        url: jdbc:mysql://192.168.1.118:3306/ctrlcrm?characterEncoding=UTF-8
-        username: ctrlcrm
-        password: glanway2017
-        initial-size: 1
-        max-active: 20
-        max-wait: 60000
-        min-idle: 1
-        time-between-eviction-runs-millis: 60000
-        min-evictable-idle-time-millis: 300000
-        validation-query: "SELECT 'x'"
-        test-while-idle: true
-        test-on-borrow: false
-        test-on-return: false
-        pool-prepared-statements: true
-        max-pool-prepared-statement-per-connection-size: 20
-        filters: stat
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://39.108.9.37:3306/test?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true
+    username: root
+    password: jc164214878
+    hikari:
+      connection-test-query: SELECT 1 FROM DUAL
+
+mybatis:
+  configuration:
+#   是否支持驼峰
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.ocean.springclouid.oceanrabbitmqconsumer.entity
+#  增加自定义的handler方法
+#  type-handlers-package:
+  mapper-locations: classpath:mapper/*.xml

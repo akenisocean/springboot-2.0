@@ -1,0 +1,91 @@
+version: "3.4"
+services:
+  message-service:
+    image:  这里填写镜像的名称
+    deploy:
+      endpoint_mode: dnsrr
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "128M"
+
+  user-service:
+    image: 镜像名称
+    deploy:
+      endpoint_mode: dnsrr
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "512M"
+
+  user-edge-service:
+    image: 镜像名称
+    deploy:
+      endpoint_mode: vip
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "512M"
+    ports:
+      - "8082:8082"
+#   设置当前服务的依赖关系
+    depends_on:
+      - user-service
+      - message-service
+
+
+  course-service:
+    image: 镜像名称
+    deploy:
+      endpoint_mode: dnsrr
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "512M"
+    #   设置当前服务的依赖关系
+    depends_on:
+      - user-service
+
+
+  course-edge-service:
+    image: 镜像名称
+    deploy:
+      endpoint_mode: vip
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "512M"
+    ports:
+      - "8081:8081"
+#   设置当前服务的依赖关系
+    depends_on:
+      - user--edge-service
+
+
+  api-gateway:
+    image: 镜像名称
+    deploy:
+      endpoint_mode: vip
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "512M"
+    ports:
+      - "8080:8080"
+    #   设置当前服务的依赖关系
+    depends_on:
+      - user-edge-service
+      - course-edge-service
+
+
+
+networks:
+  default:
+    external:
+      name: dachao-overlay
+
+
+
+
+# 启动命令
+docker stack deploy -c docker-services.yml dachao-microservice

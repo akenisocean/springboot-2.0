@@ -1,17 +1,13 @@
 package com.ocean.springcloud.oceangateway.filter;
 
-import org.springframework.cloud.gateway.filter.GatewayFilter;
-import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
-import org.springframework.http.server.reactive.ServerHttpRequest;
-
 /**
  * @author 季超
  * @create 2018-12-19 19:44
  * @desc
  **/
-public class PreGatewayFilterFactory extends AbstractGatewayFilterFactory<PreGatewayFilterFactory.Config> {
+public class PreGatewayFilterFactory /*extends AbstractGatewayFilterFactory<PreGatewayFilterFactory.Config>*/ {
 
-    public PreGatewayFilterFactory() {
+   /* public PreGatewayFilterFactory() {
         super(Config.class);
     }
 
@@ -30,6 +26,6 @@ public class PreGatewayFilterFactory extends AbstractGatewayFilterFactory<PreGat
 
     public static class Config {
         //Put the configuration properties for your filter here
-    }
+    }*/
 
 }

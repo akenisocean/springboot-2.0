@@ -1,0 +1,11 @@
+server:
+  port: 11334
+spring:
+  application:
+    name: ocean-demo
+#  profiles:
+#    active: dev
+
+
+app:
+  id: haha

@@ -1,0 +1,25 @@
+#docker compse 的配置文件包含3大部分：version services networks
+version: '3'
+services:
+  # 服务名称
+  eureka:
+    # 容器名称
+    container_name: ocean-eureka
+    # 镜像名称
+    image: registry.cn-shanghai.aliyuncs.com/happygiraffe/ocean-eureka:0.1
+    # 暴露的端口号
+    ports:
+        - "8761:8761"
+    # 设置卷挂载的路径 /opt/data代表的是日志存储路径
+    volumes:
+        - /data/volume/eureka:/opt/data
+    # 设置权限 ：拥有root权限
+    privileged: true
+    networks:
+      - default
+      
+networks:
+  default:
+    external:
+      name: dachao
+    

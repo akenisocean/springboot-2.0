@@ -1,0 +1,36 @@
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+eureka:
+  client:
+    service-url:
+       defaultZone: http://ocean-eureka:8761/eureka/
+#
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          strategy: SEMAPHORE
+#          thread:
+#            timeoutInMilliseconds: 3000
+#          semaphore:
+#            timeoutInMilliseconds: 2000
+#      fallback:
+#        isolation:
+#          semaphore:
+#            maxConcurrentRequests: 200
+#
+#spring.cloud.client.hostname: happygiraffe
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+
+

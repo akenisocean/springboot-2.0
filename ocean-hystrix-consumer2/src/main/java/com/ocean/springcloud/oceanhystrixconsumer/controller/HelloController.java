@@ -22,11 +22,11 @@ public class HelloController {
 
 
     @GetMapping("/sayHello")
-    public String sayHello(HttpServletRequest request){
+    public String sayHello(HttpServletRequest request) {
         String header = request.getHeader("X-Request-Foo");
         String value = request.getHeader("Hello");
-        System.out.println("请求头Hello的值为"+value);
-        System.out.println("请求头X-Request-Foo的值为"+header);
+        System.out.println("请求头Hello的值为" + value);
+        System.out.println("请求头X-Request-Foo的值为" + header);
 
 
         return "ocean-hystrix-consumer2sayHello";
@@ -34,26 +34,27 @@ public class HelloController {
     }
 
     @GetMapping("/sayHi")
-    public void sayHi(){
+    public void sayHi() {
     }
 
     @GetMapping("/foo/{laji}")
-    public String laji(HttpServletRequest request, HttpServletResponse response, @PathVariable("laji") String laji){
+    public String laji(HttpServletRequest request, HttpServletResponse response, @PathVariable("laji") String laji) {
         if (request.getHeaderNames().hasMoreElements()) {
             System.out.println(request.getHeaderNames().nextElement());
         }
-        response.setHeader("Access-Control-Allow-Credentials","asdadaadada");
+        response.setHeader("Access-Control-Allow-Credentials", "asdadaadada");
         System.out.println("foo");
-        return laji+2;
+        return laji + 2;
     }
+
     @GetMapping("/bar/{laji}")
-    public String bar(@PathVariable("laji") String laji){
+    public String bar(@PathVariable("laji") String laji) {
         System.out.println("bar");
         return laji;
     }
 
     @GetMapping("/fallback")
-    public User fallback(){
+    public User fallback() {
         User user = new User();
         user.setId("31231321");
         user.setUserName("cean-hystrix-consumer2.fallback");
@@ -63,11 +64,9 @@ public class HelloController {
 
 
     @GetMapping("/foo/sayHi/fallback")
-    public String fallback2(){
+    public String fallback2() {
         return "ocean-hystrix-consumer2.fallback.sayHi";
     }
-
-
 
 
 }

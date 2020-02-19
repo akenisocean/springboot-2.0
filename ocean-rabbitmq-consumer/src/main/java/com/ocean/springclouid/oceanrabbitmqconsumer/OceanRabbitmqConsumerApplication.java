@@ -14,53 +14,53 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class OceanRabbitmqConsumerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(OceanRabbitmqConsumerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(OceanRabbitmqConsumerApplication.class, args);
+    }
 
 
-	@Bean
-	public ApplicationRunner runner(AmqpTemplate template) {
-		return args -> template.convertAndSend("myqueue", "foo");
-	}
+    @Bean
+    public ApplicationRunner runner(AmqpTemplate template) {
+        return args -> template.convertAndSend("myqueue", "foo");
+    }
 
-	@Bean
-	public Queue myQueue() {
-		return new Queue("myqueue");
-	}
+    @Bean
+    public Queue myQueue() {
+        return new Queue("myqueue");
+    }
 
-	@RabbitListener(queues = "myqueue")
-	public void listen(String in) {
-		System.out.println(in);
-	}
-	@Bean
-	public DirectExchange myExchange(){
-		return new DirectExchange("myExchange");
-	}
+    @RabbitListener(queues = "myqueue")
+    public void listen(String in) {
+        System.out.println(in);
+    }
 
-	@Bean
-	public Binding  bindingExchangeMy(){
-		return BindingBuilder.bind(myQueue()).to(myExchange()).with("myqueue");
-	}
+    @Bean
+    public DirectExchange myExchange() {
+        return new DirectExchange("myExchange");
+    }
+
+    @Bean
+    public Binding bindingExchangeMy() {
+        return BindingBuilder.bind(myQueue()).to(myExchange()).with("myqueue");
+    }
 
 
-	//创建交换机
+    //创建交换机
 
-	@Bean
-	public DirectExchange orderExchange1(){
-		return new DirectExchange("order-exchange11");
-	}
+    @Bean
+    public DirectExchange orderExchange1() {
+        return new DirectExchange("order-exchange11");
+    }
 
-	@Bean
-	public Queue orderQueue11() {
-		return new Queue("orderQueue11");
-	}
+    @Bean
+    public Queue orderQueue11() {
+        return new Queue("orderQueue11");
+    }
 
-	@Bean
-	public Binding bindingExchangeOrder11(){
-		return BindingBuilder.bind(orderQueue11()).to(orderExchange1()).with("order.ABC");
-	}
-
+    @Bean
+    public Binding bindingExchangeOrder11() {
+        return BindingBuilder.bind(orderQueue11()).to(orderExchange1()).with("order.ABC");
+    }
 
 
 }

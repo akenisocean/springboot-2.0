@@ -1,0 +1,12 @@
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/,${ADDTIONAL_EUREKA_SERVER_LIST}
+# 开启自我保护模式
+  server:
+    enable-self-preservation: true
+  instance:
+    hostname: eureka
+

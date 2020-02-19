@@ -1,5 +1,6 @@
 package com.ocean.springcloud.oceandemo.health;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 import org.springframework.stereotype.Component;
@@ -17,10 +18,14 @@ import java.util.Map;
 @Endpoint(id = "redisHealthEndpoint")
 public class RedisHealthEndpoint {
 
+    @Value("${ocean.demo:laji}")
+    String oceanDemo;
+
     @ReadOperation
     public Map<String, Object> endpoint() {
         Map<String, Object> map = new HashMap<>(16);
         map.put("message", "this is my endpoint");
+        map.put("ocean.demo", oceanDemo);
         return map;
     }
 

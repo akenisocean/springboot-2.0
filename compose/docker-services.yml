@@ -28,7 +28,7 @@ services:
           memory: "512M"
     ports:
       - "8082:8082"
-#   设置当前服务的依赖关系
+    #   设置当前服务的依赖关系
     depends_on:
       - user-service
       - message-service
@@ -57,7 +57,7 @@ services:
           memory: "512M"
     ports:
       - "8081:8081"
-#   设置当前服务的依赖关系
+    #   设置当前服务的依赖关系
     depends_on:
       - user--edge-service
 
@@ -88,4 +88,4 @@ networks:
 
 
 # 启动命令
-docker stack deploy -c docker-services.yml dachao-microservice
+  docker stack deploy -c docker-services.yml dachao-microservice

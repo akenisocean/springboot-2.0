@@ -9,16 +9,18 @@ import java.util.Set;
 public enum ThreadTerminationRegistry {
     INSTANCE;
     private final Set<Handler> handlers = new HashSet<>();
-    public synchronized void register(Handler handler){
+
+    public synchronized void register(Handler handler) {
         handlers.add(handler);
     }
-    public void clearThreads(){
+
+    public void clearThreads() {
         //为保障线程安全，再遍历时将handlers复制一份
         final Set<Handler> handlerSnapshot;
-        synchronized (this){
+        synchronized (this) {
             handlerSnapshot = new HashSet<>(handlers);
         }
-        for (Handler handler :handlers) {
+        for (Handler handler : handlers) {
             handler.terminate();
 
         }

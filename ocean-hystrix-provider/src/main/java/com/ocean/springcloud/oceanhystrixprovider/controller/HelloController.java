@@ -16,13 +16,11 @@ import java.util.concurrent.TimeUnit;
 public class HelloController {
 
 
-
-
     @GetMapping("/sayHello")
-    public String sayHello(HttpServletRequest request){
+    public String sayHello(HttpServletRequest request) {
         try {
             String header = request.getHeader("X-Request-Foo");
-            System.out.println("请求头X-Request-Foo的值为"+header);
+            System.out.println("请求头X-Request-Foo的值为" + header);
             TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -33,10 +31,8 @@ public class HelloController {
     }
 
     @GetMapping("/sayHi")
-    public void sayHi(){
+    public void sayHi() {
     }
-
-
 
 
 }

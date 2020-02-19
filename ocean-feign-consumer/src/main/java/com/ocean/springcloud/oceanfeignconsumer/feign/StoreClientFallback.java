@@ -11,12 +11,12 @@ import java.util.List;
  * @desc
  **/
 @Component
-public class StoreClientFallback  implements StoreClient{
+public class StoreClientFallback implements StoreClient {
 
     @Override
     public List<Store> getStores() {
         List<Store> stores = new ArrayList<>();
-        stores.add(new Store("error","error","error"));
+        stores.add(new Store("error", "error", "error"));
         return stores;
     }
 

@@ -23,17 +23,17 @@ public class HelloController {
 
 
     @GetMapping("/sayHello")
-    public String sayHello(HttpServletRequest request){
+    public String sayHello(HttpServletRequest request) {
         String header = request.getHeader("X-Request-Foo");
         String value = request.getHeader("Hello");
-        System.out.println("请求头Hello的值为"+value);
-        System.out.println("请求头X-Request-Foo的值为"+header);
+        System.out.println("请求头Hello的值为" + value);
+        System.out.println("请求头X-Request-Foo的值为" + header);
 
         return helloService.sayHello();
     }
 
     @GetMapping("/sayHi")
-    public String sayHi(){
+    public String sayHi() {
         return "sayHi";
     }
 
@@ -43,17 +43,16 @@ public class HelloController {
         if (request.getHeaderNames().hasMoreElements()) {
             System.out.println(request.getHeaderNames().nextElement());
         }
-        response.setHeader("Access-Control-Allow-Credentials","asdadaadada");
+        response.setHeader("Access-Control-Allow-Credentials", "asdadaadada");
         System.out.println("foo");
         return laji;
     }
+
     @GetMapping("/bar/{laji}")
-    public String bar(@PathVariable("laji") String laji){
+    public String bar(@PathVariable("laji") String laji) {
         System.out.println("bar");
         return laji;
     }
-
-
 
 
 }

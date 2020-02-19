@@ -26,7 +26,7 @@ public class EnvironmentController {
     /**
      * 系统名称
      */
-    @Value("${example.systemName}")
+    @Value("${example.systemName:default}")
     private String systemName;
 
     /**
@@ -39,7 +39,7 @@ public class EnvironmentController {
 
     @Value("${smart:200}")
     private String smart;
-//    @Value("${smart2}")
+    //    @Value("${smart2}")
     private String smart2;
 
     @GetMapping("/smart")

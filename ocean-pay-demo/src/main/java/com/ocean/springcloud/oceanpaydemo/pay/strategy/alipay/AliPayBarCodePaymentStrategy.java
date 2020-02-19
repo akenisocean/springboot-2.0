@@ -42,18 +42,18 @@ public class AliPayBarCodePaymentStrategy extends AbstractAliPayStrategy<AliPayB
 
         String code = tradePayResponse.getCode();
         //Code校验
-        if(code.equals("10000")){
+        if (code.equals("10000")) {
             System.out.println("支付宝付款码成功");
-        }else if (code.equals("10003")){
+        } else if (code.equals("10003")) {
             System.out.println("调用订单查询操作");
-        }else if (code.equals("20000")){
+        } else if (code.equals("20000")) {
             System.out.println("同步并返回撤销操作");
-        }else if (code.equals("40004")){
+        } else if (code.equals("40004")) {
             System.out.println("支付失败，请自己重试");
         }
         String body = tradePayResponse.getBody();
         //TODO 返回参数进行校验操作
-        log.info("条码支付返回结果:{}",body);
+        log.info("条码支付返回结果:{}", body);
         return new AliPayBarCodePaymentVO();
 
     }

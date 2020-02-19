@@ -6,13 +6,13 @@ spring:
   cloud:
     config:
       server:
-#        git:
-#          uri: file:///C:/Users/Administrator/Desktop/xinqiuboche-config-yml/
-#          username: jc164214878@163.com
-#          password: jichao164214878
-#          search-paths: /
-#          clone-on-start: true
-#          basedir: C:\\Users\\Administrator\\Desktop\\laji\\
+        #        git:
+        #          uri: file:///C:/Users/Administrator/Desktop/xinqiuboche-config-yml/
+        #          username: jc164214878@163.com
+        #          password: jichao164214878
+        #          search-paths: /
+        #          clone-on-start: true
+        #          basedir: C:\\Users\\Administrator\\Desktop\\laji\\
         native:
           fail-on-error: true
           search-locations: file:///C:\\Users\\Administrator\\Desktop\\xinqiuboche-config-yml\\

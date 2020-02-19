@@ -19,11 +19,11 @@ public class StoreController {
 
 
     @GetMapping("/stores")
-    public List<Store> getStores(){
+    public List<Store> getStores() {
         List<Store> list = new ArrayList<>();
-        list.add(new Store("1","2","3"));
-        list.add(new Store("2","2","3"));
-        list.add(new Store("3","2","3"));
+        list.add(new Store("1", "2", "3"));
+        list.add(new Store("2", "2", "3"));
+        list.add(new Store("3", "2", "3"));
         log.info("ocean-feign-provider/stores开始执行了");
         try {
             TimeUnit.SECONDS.sleep(20);

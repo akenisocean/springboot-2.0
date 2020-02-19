@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.ocean.springcloud</groupId>
         <artifactId>spring-cloud-docker-in-action</artifactId>
-        <version>1.0</version>
+        <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -33,56 +33,67 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <!--<plugin>-->
-                <!--<groupId>com.spotify</groupId>-->
-                <!--<artifactId>dockerfile-maven-plugin</artifactId>-->
-                <!--<version>1.4.0</version>-->
-                <!--<configuration>-->
-                    <!--<repository>${docker.repostory}/${docker.registry.name}/${project.artifactId}</repository>-->
-                    <!--&lt;!&ndash;不指定tag默认为latest&ndash;&gt;-->
-                     <!--<tag>${project.version}</tag>-->
-                    <!--<buildArgs>-->
-                        <!--<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>-->
-                    <!--</buildArgs>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-            <!--<plugin>-->
-                <!--<groupId>com.spotify</groupId>-->
-                <!--<artifactId>docker-maven-plugin</artifactId>-->
-                <!--<version>1.2.0</version>-->
-                <!--<configuration>-->
-                    <!--&lt;!&ndash; 推送到指定的仓库 &ndash;&gt;-->
-                    <!--<registryUrl>${docker.repostory}</registryUrl>-->
-                    <!--&lt;!&ndash; 开启docker远程API的端口 &ndash;&gt;-->
-                    <!--<dockerHost>http://39.108.9.37:2375</dockerHost>-->
-                    <!--&lt;!&ndash; 指定镜像名称 格式：仓库域名：端口/镜像名字：镜像的版本号 &ndash;&gt;-->
-                    <!--<imageName>${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}</imageName>-->
-                    <!--&lt;!&ndash;<imageTags></imageTags>&ndash;&gt;-->
-                    <!--&lt;!&ndash;设置Dockerfile目录&ndash;&gt;-->
-                    <!--<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>-->
-                    <!--<imageTags>-->
-                        <!--<imageTag>${project.version}</imageTag>-->
-                        <!--&lt;!&ndash;<imageTag>latest</imageTag>&ndash;&gt;-->
-                    <!--</imageTags>-->
-                    <!--&lt;!&ndash; 是否有push的功能 true代表有 &ndash;&gt;-->
-                    <!--<pushImage>true</pushImage>-->
-                    <!--&lt;!&ndash; push后是否覆盖已存在的标签镜像 &ndash;&gt;-->
-                    <!--<forceTags>true</forceTags>-->
-                    <!--<buildArgs>-->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <configuration>
+                    <serverId>docker-aliyun</serverId>
+                    <imageName>${docker.repostory}/${docker.registry.name}/${project.artifactId}</imageName>
+                    <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+                    <imageTags>
+                        <imageTag>${project.version}</imageTag>
+                    </imageTags>
+                    <!-- 是否有push的功能 true代表有 -->
+                    <pushImage>true</pushImage>
+                    <!-- push后是否覆盖已存在的标签镜像 -->
+                    <forceTags>true</forceTags>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>com.spotify</groupId>-->
+<!--                <artifactId>docker-maven-plugin</artifactId>-->
+<!--                <version>1.2.0</version>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash; 推送到指定的仓库 &ndash;&gt;-->
+<!--                    <registryUrl>${docker.repostory}</registryUrl>-->
+<!--                    &lt;!&ndash; 开启docker远程API的端口 &ndash;&gt;-->
+<!--                    <dockerHost>http://39.108.9.37:2375</dockerHost>-->
+<!--                    &lt;!&ndash; 指定镜像名称 格式：仓库域名：端口/镜像名字：镜像的版本号 &ndash;&gt;-->
+<!--                    <imageName>${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}-->
+<!--                    </imageName>-->
+<!--                    &lt;!&ndash;<imageTags></imageTags>&ndash;&gt;-->
+<!--                    &lt;!&ndash;设置Dockerfile目录&ndash;&gt;-->
+<!--                    <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>-->
+<!--                    <imageTags>-->
+<!--                        <imageTag>${project.version}</imageTag>-->
+<!--                        &lt;!&ndash;<imageTag>latest</imageTag>&ndash;&gt;-->
+<!--                    </imageTags>-->
+<!--                    &lt;!&ndash; 是否有push的功能 true代表有 &ndash;&gt;-->
+<!--                    <pushImage>true</pushImage>-->
+<!--                    &lt;!&ndash; push后是否覆盖已存在的标签镜像 &ndash;&gt;-->
+<!--                    <forceTags>true</forceTags>-->
+<!--                    <buildArgs>-->
 
-                    <!--</buildArgs>-->
+<!--                    </buildArgs>-->
 
-                    <!--&lt;!&ndash;<serverId>docker-aliyun</serverId>&ndash;&gt;-->
+<!--                    &lt;!&ndash;<serverId>docker-aliyun</serverId>&ndash;&gt;-->
 
-                    <!--<resources>-->
-                        <!--<resource>-->
-                            <!--<targetPath>/</targetPath>-->
-                            <!--<directory>${project.build.directory}</directory>-->
-                            <!--<include>${project.build.finalName}.jar</include>-->
-                        <!--</resource>-->
-                    <!--</resources>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
+<!--                    <resources>-->
+<!--                        <resource>-->
+<!--                            <targetPath>/</targetPath>-->
+<!--                            <directory>${project.build.directory}</directory>-->
+<!--                            <include>${project.build.finalName}.jar</include>-->
+<!--                        </resource>-->
+<!--                    </resources>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 

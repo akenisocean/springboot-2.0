@@ -14,11 +14,11 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "wxpay")
 @Data
 public class WxPayConfig {
-  private String wechatAppId;
-  private String wechatMchId;
-  private String wechatKey;
-  private String wechatIp;
-  private String wechatOpUserId;
-  private String wechatCertPath;
-  private String wechatCallback;
+    private String wechatAppId;
+    private String wechatMchId;
+    private String wechatKey;
+    private String wechatIp;
+    private String wechatOpUserId;
+    private String wechatCertPath;
+    private String wechatCallback;
 }

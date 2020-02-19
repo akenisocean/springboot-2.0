@@ -22,17 +22,17 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class OrderService {
 
-    private Map<String,Order> orderInsertMap = new ConcurrentHashMap<>();
+    private Map<String, Order> orderInsertMap = new ConcurrentHashMap<>();
     private Map<String, BrokerMessageLog> orderMessageLogMap = new ConcurrentHashMap<>();
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
-    
+
 
     public void createOrder(Order order) {
-        orderInsertMap.put(order.getId(),order);
+        orderInsertMap.put(order.getId(), order);
         BrokerMessageLog brokerMessageLog = getBrokerMessageLog(order);
-        orderMessageLogMap.put(brokerMessageLog.getMessageId(),brokerMessageLog);
+        orderMessageLogMap.put(brokerMessageLog.getMessageId(), brokerMessageLog);
         //消息唯一ID
         CorrelationData correlationData = new CorrelationData(order.getMessageId());
         rabbitTemplate.convertAndSend("DIRECT_EXCHANGE", "DIRECT_ROUTING_KEY", order, correlationData);

@@ -9,15 +9,15 @@ import java.util.concurrent.TimeUnit;
  * @desc
  **/
 public class CountDownLatchExample {
- private static final CountDownLatch latch = new CountDownLatch(4);
- private static int data;
+    private static final CountDownLatch latch = new CountDownLatch(4);
+    private static int data;
 
     public static void main(String[] args) throws InterruptedException {
-        Thread workerThead = new Thread(){
+        Thread workerThead = new Thread() {
             @Override
             public void run() {
                 for (int i = 0; i < 10; i++) {
-                    data = i+1;
+                    data = i + 1;
                     latch.countDown();
                     //随机睡一会儿
                     try {
@@ -31,7 +31,7 @@ public class CountDownLatchExample {
         };
         workerThead.start();
         latch.await();
-        System.out.printf("It's down,data=%d",data);
+        System.out.printf("It's down,data=%d", data);
 
     }
 }

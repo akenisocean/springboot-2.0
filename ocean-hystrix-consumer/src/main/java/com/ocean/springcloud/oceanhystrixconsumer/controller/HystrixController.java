@@ -18,7 +18,7 @@ public class HystrixController {
 
 
     @GetMapping("/sayHello")
-    public String sayHello(){
+    public String sayHello() {
         try {
             TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException e) {
@@ -28,11 +28,12 @@ public class HystrixController {
     }
 
     @GetMapping("/incaseoffailureusethis")
-    public String incaseoffailureusethis(){
+    public String incaseoffailureusethis() {
         return "consumer.incaseoffailureusethis.fallback";
     }
+
     @GetMapping("/fallback")
-    public String fallback(){
+    public String fallback() {
         return "consumer.fallback";
     }
 }

@@ -8,12 +8,13 @@ import java.util.concurrent.CountDownLatch;
  * @desc 服务抽象类
  **/
 
-public  abstract class AbstractService implements Service {
+public abstract class AbstractService implements Service {
     protected boolean started = false;
     protected final CountDownLatch latch;
 
     /**
      * 通过构造方法初始化CountDownLatch
+     *
      * @param latch
      */
     public AbstractService(CountDownLatch latch) {

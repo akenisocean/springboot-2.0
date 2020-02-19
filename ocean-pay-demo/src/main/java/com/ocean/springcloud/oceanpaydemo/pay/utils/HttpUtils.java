@@ -22,6 +22,7 @@ import java.io.IOException;
 public class HttpUtils {
     /**
      * post请求（用于请求xml格式的参数）
+     *
      * @param url
      * @param params
      * @return
@@ -45,14 +46,12 @@ public class HttpUtils {
             int state = status.getStatusCode();
             if (state == HttpStatus.SC_OK) {
                 HttpEntity responseEntity = response.getEntity();
-                String jsonString = EntityUtils.toString(responseEntity,charSet);
+                String jsonString = EntityUtils.toString(responseEntity, charSet);
                 return jsonString;
-            }
-            else{
+            } else {
 
             }
-        }
-        finally {
+        } finally {
             if (response != null) {
                 try {
                     response.close();
@@ -77,9 +76,9 @@ public class HttpUtils {
      * @throws Exception
      */
 //    public static String doRefund(String url,String data) throws Exception {
-        /**
-         * PKCS12证书 是从微信商户平台-》账户设置-》 API安全 中下载的
-         */
+    /**
+     * PKCS12证书 是从微信商户平台-》账户设置-》 API安全 中下载的
+     */
 //        KeyStore keyStore  = KeyStore.getInstance("PKCS12");
 //        InputStream instream = HttpUtils.class.getClassLoader().getResourceAsStream(WXPayConfig.getInstance().getCertName());
 //        if(instream == null) {

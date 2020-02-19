@@ -22,9 +22,9 @@ public class TaskRunner {
         this(new LinkedBlockingDeque<>());
     }
 
-    public void init(){
+    public void init() {
         final Thread t = workerThead;
-        if (null != t){
+        if (null != t) {
             t.start();
         }
     }
@@ -37,7 +37,7 @@ public class TaskRunner {
         @Override
         public void run() {
             Runnable task = null;
-            for (; ;) {
+            for (; ; ) {
                 try {
                     task = channel.take();
                     task.run();

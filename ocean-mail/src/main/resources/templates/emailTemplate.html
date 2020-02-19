@@ -5,8 +5,17 @@
     <title>邮件模板</title>
 </head>
 <body>
-   你好，感谢你的注册，这是一份验证邮件，请点击下面链接完成注册，感谢你的支持</br>
+你好，感谢你的注册，这是一份验证邮件，请点击下面链接完成注册，感谢你的支持</br>
 
 <a href="#" th:href="@{http://www.happygiraffeisfun.com/register/{id}(id=${id})}">激活账号</a>
+
+
+<div id="app" style="margin: 20px 20%">
+    <form action="/demo/user/login" method="post">
+        用户名<input type="text" name="name" placeholder="用户名"/>
+        密码<input type="password" name="password" placeholder="密码"/>
+        <input type="submit" value="登录">
+    </form>
+</div>
 </body>
 </html>

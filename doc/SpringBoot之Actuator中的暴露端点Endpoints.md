@@ -1,4 +1,17 @@
-通过注解@Endpoint方式来暴露指定端点
+### actuator实现优雅关闭项目
+1. 配置
+```yaml
+management:
+# 开启关闭项目端口
+    shutdown:
+      enabled: true
+```
+2. POST请求调用
+```shell script
+curl -X POST http://{hostname|ip}:{server.port}/actuator/shutdown
+```
+
+## 通过注解@Endpoint方式来暴露指定端点
 
 ```java
 
@@ -12,7 +25,7 @@ public class RedisHealthEndpoint {
         map.put("message", "this is my endpoint");
         return map;
     }
-
+ 
 
 }
 

@@ -9,7 +9,7 @@ import io.netty.handler.codec.http.HttpServerCodec;
 /**
  * @author 季超
  * @create 2018-11-09 21:32
- * @desc 初始化器,channel注册后，会执行里面相应的初始化方法
+ * @desc 初始化器, channel注册后，会执行里面相应的初始化方法
  **/
 public class HelloServerInitializer extends ChannelInitializer<SocketChannel> {
     @Override
@@ -20,10 +20,10 @@ public class HelloServerInitializer extends ChannelInitializer<SocketChannel> {
         //通过管道添加handler
         //HttpServerCodec是由netty自己提供的助手类，可以理解为拦截器
         // 当请求服务器，我们需要做解码，相应到客户端需要做编码
-        pipeline.addLast("HttpServerCodec",new HttpServerCodec());
+        pipeline.addLast("HttpServerCodec", new HttpServerCodec());
 
         //添加自定义的handler
-        pipeline.addLast("customHandler",new CustomHandler());
+        pipeline.addLast("customHandler", new CustomHandler());
 
     }
 }

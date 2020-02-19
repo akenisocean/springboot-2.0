@@ -19,14 +19,14 @@ import org.springframework.stereotype.Component;
 @EnableRetry
 @Component
 public class RecoryTest {
-    public void test () {
+    public void test() {
         retry();
     }
 
     @Retryable(value = {RetryException.class},//指定发生的异常进行重试
-            maxAttempts=3,                   //重试次数,默认即为3
+            maxAttempts = 3,                   //重试次数,默认即为3
             backoff = @Backoff(value = 2000))//每次重试延迟毫秒数
-    public void retry () {
+    public void retry() {
         log.info("retry start");
 
         throw new RetryException("retry fail");
@@ -34,7 +34,7 @@ public class RecoryTest {
     }
 
     @Recover
-    public void recover (RetryException e) {
+    public void recover(RetryException e) {
         log.info("recovery,{}", e.getMessage());
 
     }

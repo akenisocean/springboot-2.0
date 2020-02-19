@@ -10,11 +10,11 @@ services:
     deploy:
       replicas: 2
       restart_policy:
-#        重启策略： 失败后就进行重启操作
+        #        重启策略： 失败后就进行重启操作
         condition: on-failure
       resource:
         limits:
-#          设置当前的cpu使用空间为0.1，对应的内存大小为50M
+          #          设置当前的cpu使用空间为0.1，对应的内存大小为50M
           cpus: "0.1"
           memory: 50M
     depends_on:
@@ -33,5 +33,5 @@ networks:
 
 
 
- #  启动命令
-docker stack deploy -c docker-swarm-alpine.uml test1s
+  #  启动命令
+  docker stack deploy -c docker-swarm-alpine.uml test1s

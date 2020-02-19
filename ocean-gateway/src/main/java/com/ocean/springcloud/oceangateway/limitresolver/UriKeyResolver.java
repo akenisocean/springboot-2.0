@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
  * @author fangzhipeng
  * create 2018-12-05
  **/
-public class UriKeyResolver  implements KeyResolver {
+public class UriKeyResolver implements KeyResolver {
 
     @Override
     public Mono<String> resolve(ServerWebExchange exchange) {

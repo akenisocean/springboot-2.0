@@ -7,11 +7,11 @@ spring:
     virtual-host: /
     listener:
       simple:
-#       采用手动应答
+        #       采用手动应答
         acknowledge-mode: manual
-#       当前监听容器数
+        #       当前监听容器数
         concurrency: 1
-#       最大数
+        #       最大数
         max-concurrency: 1
         retry:
           enabled: true
@@ -21,7 +21,7 @@ spring:
     publisher-returns: true
     template:
       mandatory: true
-# redis配置
+  # redis配置
   redis:
     host: 39.108.9.37
     port: 7005

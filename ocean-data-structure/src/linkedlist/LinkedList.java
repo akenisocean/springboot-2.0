@@ -116,10 +116,10 @@ public class LinkedList<E> {
 
     }
 
-    public boolean contains(E e){
+    public boolean contains(E e) {
         Node cur = dummyHead.next;
-        while (cur != null){
-            if (cur.e.equals(e)){
+        while (cur != null) {
+            if (cur.e.equals(e)) {
                 return true;
             }
             cur = cur.next;
@@ -128,7 +128,7 @@ public class LinkedList<E> {
         return false;
     }
 
-    public E remove(int index){
+    public E remove(int index) {
         if (index < 0 || index >= size)
             throw new IllegalArgumentException("Remove Faild,Illegal index.");
 
@@ -139,23 +139,24 @@ public class LinkedList<E> {
         Node retNode = prev.next;
         prev.next = retNode.next;
         retNode.next = null;
-        size --;
+        size--;
         return retNode.e;
     }
-    public E removeFirst(){
+
+    public E removeFirst() {
         return remove(0);
     }
-    public E remnoveLast(){
-        return remove(size-1);
-    }
 
+    public E remnoveLast() {
+        return remove(size - 1);
+    }
 
 
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
         Node cur = dummyHead.next;
-        while (cur != null){
+        while (cur != null) {
             res.append(cur + "->");
             cur = cur.next;
         }

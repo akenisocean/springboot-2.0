@@ -15,54 +15,55 @@ import java.util.Map;
  **/
 public class RoutingBeanProxyFactory {
 
-    static Object createProxy(Class targetClass, Map<String, Object> beans){
+    static Object createProxy(Class targetClass, Map<String, Object> beans) {
         ProxyFactory proxyFactory = new ProxyFactory();
         proxyFactory.setInterfaces(targetClass);
-        proxyFactory.addAdvice(new VersionRoutingMethodInterceptor(targetClass,beans));
+        proxyFactory.addAdvice(new VersionRoutingMethodInterceptor(targetClass, beans));
         return proxyFactory.getProxy();
     }
-    static class VersionRoutingMethodInterceptor implements MethodInterceptor{
+
+    static class VersionRoutingMethodInterceptor implements MethodInterceptor {
         private String classSwitch;
         private Object beanSwitchOn;
         private Object beanOfSwitchOff;
 
-        public VersionRoutingMethodInterceptor(Class targetClass,Map<String,Object> beans){
+        public VersionRoutingMethodInterceptor(Class targetClass, Map<String, Object> beans) {
             //将接口名称的第一个字母转换成小写
             String interfaceName = StringUtils.uncapitalize(targetClass.getSimpleName());
-            if (targetClass.isAnnotationPresent(RoutingSwitch.class)){
-                this.classSwitch = ((RoutingSwitch)targetClass.getAnnotation(RoutingSwitch.class)).value();
+            if (targetClass.isAnnotationPresent(RoutingSwitch.class)) {
+                this.classSwitch = ((RoutingSwitch) targetClass.getAnnotation(RoutingSwitch.class)).value();
             }
-            this.beanSwitchOn = beans.get(this.buildBeanName(interfaceName,true));
-            this.beanOfSwitchOff = beans.get(this.buildBeanName(interfaceName,false));
+            this.beanSwitchOn = beans.get(this.buildBeanName(interfaceName, true));
+            this.beanOfSwitchOff = beans.get(this.buildBeanName(interfaceName, false));
         }
 
         private String buildBeanName(String interfaceName, boolean isSwitchOn) {
-            return interfaceName+"Impl"+(isSwitchOn ? "V1":"V1");
+            return interfaceName + "Impl" + (isSwitchOn ? "V1" : "V1");
         }
 
         @Override
         public Object invoke(MethodInvocation invocation) throws Throwable {
             Method method = invocation.getMethod();
             String switchName = this.classSwitch;
-            if (method.isAnnotationPresent(RoutingSwitch.class)){
+            if (method.isAnnotationPresent(RoutingSwitch.class)) {
                 switchName = method.getAnnotation(RoutingSwitch.class).value();
             }
-            if (StringUtils.isBlank(switchName)){
-                throw new IllegalStateException("RoutinSwitch value is blank,method:"+method.getName());
+            if (StringUtils.isBlank(switchName)) {
+                throw new IllegalStateException("RoutinSwitch value is blank,method:" + method.getName());
             }
-            return invocation.getMethod().invoke(getTargetBean(switchName),invocation.getArguments());
+            return invocation.getMethod().invoke(getTargetBean(switchName), invocation.getArguments());
         }
 
         private Object getTargetBean(String switchName) {
             boolean switchOn;
-            if ("A".equals(switchName)){
+            if ("A".equals(switchName)) {
                 switchOn = false;
-            }else if ("B".equals(switchName)){
+            } else if ("B".equals(switchName)) {
                 switchOn = true;
-            }else{
+            } else {
                 switchOn = true;
             }
-            return switchOn ? beanSwitchOn:beanOfSwitchOff;
+            return switchOn ? beanSwitchOn : beanOfSwitchOff;
         }
     }
 

@@ -83,6 +83,7 @@ public class Array<E> {
 
     /**
      * 进行扩容操作
+     *
      * @param newCapacity
      */
     private void resize(int newCapacity) {

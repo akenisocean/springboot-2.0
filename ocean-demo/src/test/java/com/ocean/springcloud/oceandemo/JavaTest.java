@@ -12,7 +12,7 @@ import java.util.Optional;
  */
 public class JavaTest {
     @Test
-    public void optionalTest(){
+    public void optionalTest() {
         CouponConfQrReq c = new CouponConfQrReq();
         Optional<CouponConfQrReq> op = Optional.ofNullable(c);
         System.out.println();

@@ -6,9 +6,9 @@
 public class ArrayTest {
     public static void main(String[] args) {
         Array<Student> arr = new Array<Student>();
-        arr.addLast(new Student("Alice",10));
-        arr.addLast(new Student("Aken",30));
-        arr.addLast(new Student("Folen",50));
+        arr.addLast(new Student("Alice", 10));
+        arr.addLast(new Student("Aken", 30));
+        arr.addLast(new Student("Folen", 50));
         System.out.println(arr.toString());
 
     }

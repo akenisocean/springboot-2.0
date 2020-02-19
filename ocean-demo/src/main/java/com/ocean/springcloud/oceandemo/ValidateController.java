@@ -17,13 +17,13 @@ import javax.validation.constraints.Min;
 @Validated
 public class ValidateController {
     @GetMapping("/getValidate")
-    public String getValidate( @Min(value = 3,message = "laji") @RequestParam("haha") int haha){
+    public String getValidate(@Min(value = 3, message = "laji") @RequestParam("haha") int haha) {
         return String.valueOf(haha);
     }
 
     @PostMapping("/getValidate2")
-    public User getValidate(@Valid @RequestBody User user){
+    public User getValidate(@Valid @RequestBody User user) {
 
-       return user;
+        return user;
     }
 }

@@ -31,19 +31,19 @@ public class WxPayBarCodePaymentStrategy implements PayStrategy<WxPayBarCodePaym
     public WxPayBarCodePaymentVO operate(WxPayBarCodePaymentDTO wxDTO) {
         wxDTO.setAppId(wxPayConfig.getWechatAppId());
         wxDTO.setMchId(wxPayConfig.getWechatMchId());
-        wxDTO.setTotalFee(new BigDecimal(wxDTO.getTotalFee()).multiply(new BigDecimal("100")).intValue()+"");
+        wxDTO.setTotalFee(new BigDecimal(wxDTO.getTotalFee()).multiply(new BigDecimal("100")).intValue() + "");
         wxDTO.setNonceStr(wxDTO.getOutTradeNo());
         wxDTO.setSign(null);
-        wxDTO.setSign(SignUtils.createSign(wxDTO,ApiUrlConstants.WxPayConstants.DEFAULT_SIGN_TYPE, wxPayConfig.getWechatKey(), new String[0]));
+        wxDTO.setSign(SignUtils.createSign(wxDTO, ApiUrlConstants.WxPayConstants.DEFAULT_SIGN_TYPE, wxPayConfig.getWechatKey(), new String[0]));
 
         String xml = XmlUtils.toXML(wxDTO);
         log.info("微信H5支付下单请求参数：{}", xml);
         String responseContent = null;
         try {
-            responseContent = HttpUtils.doPost(ApiUrlConstants.WxPayConstants.BAT_CODE_PAYMENT_URL,xml);
+            responseContent = HttpUtils.doPost(ApiUrlConstants.WxPayConstants.BAT_CODE_PAYMENT_URL, xml);
             log.info("微信H5支付下单返回参数：{}", responseContent);
         } catch (Exception e) {
-           log.error("微信当面支付错误，{}", ExceptionUtils.getFullStackTrace(e));
+            log.error("微信当面支付错误，{}", ExceptionUtils.getFullStackTrace(e));
         }
         WxPayBarCodePaymentVO wxPayBarCodePaymentVO = WxPayBarCodePaymentVO.fromXML(responseContent, WxPayBarCodePaymentVO.class);
         return wxPayBarCodePaymentVO;

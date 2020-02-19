@@ -14,7 +14,7 @@ import lombok.Data;
 public class WxPayBarCodePaymentDTO extends WxpayBaseDTO {
 
     /**
-     *商品描述
+     * 商品描述
      */
     @XStreamAlias("body")
     private String body;

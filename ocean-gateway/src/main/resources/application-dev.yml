@@ -6,116 +6,116 @@ spring:
     database: 0
   cloud:
     gateway:
-#      设置全局的cors
+      #      设置全局的cors
       globalcors:
         corsConfigurations:
           '[/**]':
             allowedOrigins: "https://docs.spring.io"
             allowedMethods:
               - GET
-#     添加默认的filters
-#      default-filters:
-#        - PrefixPath=/foo
-#        - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+      #     添加默认的filters
+      #      default-filters:
+      #        - PrefixPath=/foo
+      #        - AddResponseHeader=X-Response-Default-Foo, Default-Bar
       routes:
-#        - id: after_route
-#          uri: http://127.0.0.1:9000
-#          添加当前路由规则的顺序优先级，数值越小表示越先被匹配
-#          order: 1000
-#          predicates:
-#           时间使用的是ZoneDateTime来进行保存
-#            - After=2017-01-20T17:42:47.789-07:00[Asia/Shanghai]
-#            - Before=2020-01-20T17:42:47.789-07:00[Asia/Shanghai]
-#            - Between=2017-01-20T17:42:47.789-07:00[Asia/Shanghai], 2020-01-20T17:42:47.789-07:00[Asia/Shanghai]
-#            cookie值设置
-#            - Cookie=chocolate, ch.p
-#            请求的header头里面包含X-Request-Id, 并且是数字类型（正则表达式来进行校验操作）
-#            - Header=X-Request-Id, \d+
-#            请求的主机地址为 happygiraffeisfun.com 或者 happygiraffeisfun2.com 则匹配
-#            - Host=**.happygiraffeisfun.com,**.happygiraffeisfun2.com
-#            请求方式为GET则匹配
-#            - Method=GET
-#  请求参数parameter的key=foo foo.value=ba.* 开头则匹配
-#            - Query=foo, ba.
-#            - Path=/foo/{segment},/bar/{segment}
-#           远程请求地址限制，不是192.168.0.191网段下的都能够进行访问,例如  192.168.0.154的地址请求该端口也可以进行访问
-#            - RemoteAddr=192.168.0.191/24
-#          filters:
-#           gateway网管会为当前路由的header头中添加 key=X-Request-Foo,value=Bar
-#            - AddRequestHeader=X-Request-Foo, Bar
-#           gateway网管会在请求桉树中添加 key-foo,value=bar
-#            - AddRequestParameter=foo, bar
-#           gateway网管回去返回的header头中添加key=X-Response-Foo,value=Bar
-#            - AddResponseHeader=X-Response-Foo, Bar
-#           TODO  暂时是个问题，启动错误，稍后处理
-#            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
-# ############# 第二个路由规则
-#        - id: default_path
-#          lb （LoadBanlancer） 表示当前通过Discovery服务发现找寻服务为spring.application.name=ocean-hystrix-consumer对应的地址来进行路由
-#          uri: lb://ocean-hystrix-consumer
-#          predicates:
-#            - Path=/**
-#       第三个路由规则
-#        - id: dedupe_re
-#          uri: https://example.org
-#          predicates:
-#            - Path=/abc/**
-#      第四个路由规则
-#        - id: hystrix_route
-#          uri: lb://ocean-hystrix-consumer
-#          predicates:
-#            - Path=/hystrix/**
-#          filters:
-#            - name: Hystrix
-#              args:
-#                name: fallbackcmd
-#                fallbackUri: forward:/incaseoffailureusethis
-#            - RewritePath=/consumingserviceendpoint, /backingserviceendpoint
+        #        - id: after_route
+        #          uri: http://127.0.0.1:9000
+        #          添加当前路由规则的顺序优先级，数值越小表示越先被匹配
+        #          order: 1000
+        #          predicates:
+        #           时间使用的是ZoneDateTime来进行保存
+        #            - After=2017-01-20T17:42:47.789-07:00[Asia/Shanghai]
+        #            - Before=2020-01-20T17:42:47.789-07:00[Asia/Shanghai]
+        #            - Between=2017-01-20T17:42:47.789-07:00[Asia/Shanghai], 2020-01-20T17:42:47.789-07:00[Asia/Shanghai]
+        #            cookie值设置
+        #            - Cookie=chocolate, ch.p
+        #            请求的header头里面包含X-Request-Id, 并且是数字类型（正则表达式来进行校验操作）
+        #            - Header=X-Request-Id, \d+
+        #            请求的主机地址为 happygiraffeisfun.com 或者 happygiraffeisfun2.com 则匹配
+        #            - Host=**.happygiraffeisfun.com,**.happygiraffeisfun2.com
+        #            请求方式为GET则匹配
+        #            - Method=GET
+        #  请求参数parameter的key=foo foo.value=ba.* 开头则匹配
+        #            - Query=foo, ba.
+        #            - Path=/foo/{segment},/bar/{segment}
+        #           远程请求地址限制，不是192.168.0.191网段下的都能够进行访问,例如  192.168.0.154的地址请求该端口也可以进行访问
+        #            - RemoteAddr=192.168.0.191/24
+        #          filters:
+        #           gateway网管会为当前路由的header头中添加 key=X-Request-Foo,value=Bar
+        #            - AddRequestHeader=X-Request-Foo, Bar
+        #           gateway网管会在请求桉树中添加 key-foo,value=bar
+        #            - AddRequestParameter=foo, bar
+        #           gateway网管回去返回的header头中添加key=X-Response-Foo,value=Bar
+        #            - AddResponseHeader=X-Response-Foo, Bar
+        #           TODO  暂时是个问题，启动错误，稍后处理
+        #            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+        # ############# 第二个路由规则
+        #        - id: default_path
+        #          lb （LoadBanlancer） 表示当前通过Discovery服务发现找寻服务为spring.application.name=ocean-hystrix-consumer对应的地址来进行路由
+        #          uri: lb://ocean-hystrix-consumer
+        #          predicates:
+        #            - Path=/**
+        #       第三个路由规则
+        #        - id: dedupe_re
+        #          uri: https://example.org
+        #          predicates:
+        #            - Path=/abc/**
+        #      第四个路由规则
+        #        - id: hystrix_route
+        #          uri: lb://ocean-hystrix-consumer
+        #          predicates:
+        #            - Path=/hystrix/**
+        #          filters:
+        #            - name: Hystrix
+        #              args:
+        #                name: fallbackcmd
+        #                fallbackUri: forward:/incaseoffailureusethis
+        #            - RewritePath=/consumingserviceendpoint, /backingserviceendpoint
         - id: ingredients-fallback
           uri: lb://ocean-hystrix-consumer
           predicates:
             - Path=/foo/**
           filters:
-#            每个Predicates匹配的Path的前缀都添加上/foo 例如： http://192.169.0.191:18000/hiSay = http://192.169.0.191:18000/foo/hiSay
-#            - PrefixPath=/foo
-#            name=Hystrix代表当前开启Hystrix断路器模式
+            #            每个Predicates匹配的Path的前缀都添加上/foo 例如： http://192.169.0.191:18000/hiSay = http://192.169.0.191:18000/foo/hiSay
+            #            - PrefixPath=/foo
+            #            name=Hystrix代表当前开启Hystrix断路器模式
             - name: Hystrix
               args:
-#              表示Hystrix的CommandKey为fallbackcmd的断路器
+                #              表示Hystrix的CommandKey为fallbackcmd的断路器
                 name: fallbackcmd
-#               断路器模式后重定向的地址 注意： 该地址在gateway网管配置,或者下面配置的gateway=ingredients-fallback2
+                #               断路器模式后重定向的地址 注意： 该地址在gateway网管配置,或者下面配置的gateway=ingredients-fallback2
                 fallbackUri: forward:/fallback
-#            - RewritePath=/consumingserviceendpoint, /backingserviceendpoint
+        #            - RewritePath=/consumingserviceendpoint, /backingserviceendpoint
         - id: ingredients-fallback2
           uri: lb://ocean-hystrix-consumer
           predicates:
             - Path=/fallback
-#          filters:
-#            - name: FallbackHeaders
-#              args:
-#                executionExceptionTypeHeaderName: Test-Header
+          #          filters:
+          #            - name: FallbackHeaders
+          #              args:
+          #                executionExceptionTypeHeaderName: Test-Header
           filters:
-#            如果KyeResolve对应的key找不到，请求将会被拒绝，可以通过如下参数来进行调整。
-#  spring.cloud.gateway.filter.request-rate-limiter.deny-empty-key (true or false) and
-#  spring.cloud.gateway.filter.request-rate-limiter.empty-key-status-code properties.
-#     例如：访问http://localhost:18000/fallback       请求的头会添加302，并制定地址百度     RedirectToGatewayFilterFactory
-#            - RedirectTo=302, https://www.baidu.com
+            #            如果KyeResolve对应的key找不到，请求将会被拒绝，可以通过如下参数来进行调整。
+            #  spring.cloud.gateway.filter.request-rate-limiter.deny-empty-key (true or false) and
+            #  spring.cloud.gateway.filter.request-rate-limiter.empty-key-status-code properties.
+            #     例如：访问http://localhost:18000/fallback       请求的头会添加302，并制定地址百度     RedirectToGatewayFilterFactory
+            #            - RedirectTo=302, https://www.baidu.com
             - name: RequestRateLimiter
               args:
-#              该key则是添加的Bean对应的名称
+                #              该key则是添加的Bean对应的名称
                 key-resolver: '#{@hostAddrKeyResolver}'
-#                自定义限速对象
-#                rate-limiter: "#{@myRateLimiter}"
-#              您希望允许用户每秒执行多少请求，而不会丢弃任何请求。这是令牌桶填充的速率
+                #                自定义限速对象
+                #                rate-limiter: "#{@myRateLimiter}"
+                #              您希望允许用户每秒执行多少请求，而不会丢弃任何请求。这是令牌桶填充的速率
                 redis-rate-limiter.replenishRate: 4
-#               一秒钟内允许用户执行的最大请求数。这是令牌桶可以容纳的令牌数。将该值设置为零将阻止所有请求。
+                #               一秒钟内允许用户执行的最大请求数。这是令牌桶可以容纳的令牌数。将该值设置为零将阻止所有请求。
                 redis-rate-limiter.burstCapacity: 3
             - RemoveResponseHeader=X-RateLimit-Remaining
             - RemoveResponseHeader=X-RateLimit-Burst-Capacity
             - RemoveResponseHeader=X-RateLimit-Replenish-Rate
 
 
-#   启用Discovery Client网关集成的标志
+      #   启用Discovery Client网关集成的标志
       discovery:
         locator:
           enabled: true

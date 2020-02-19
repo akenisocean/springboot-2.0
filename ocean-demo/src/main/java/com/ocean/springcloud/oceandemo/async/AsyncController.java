@@ -25,8 +25,8 @@ public class AsyncController {
 
 
     @GetMapping("/test1")
-    public void test1(){
-      log.info("test1线程开始了");
+    public void test1() {
+        log.info("test1线程开始了");
         asyncService.test1();
         Future<String> stringFuture = asyncService.test2();
         try {

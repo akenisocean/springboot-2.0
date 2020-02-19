@@ -22,8 +22,6 @@ public class JavaTest1 {
     }
 
 
-
-
     private static class PersonModel {
         private String name;
         private Integer age;

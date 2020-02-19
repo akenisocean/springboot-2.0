@@ -19,7 +19,6 @@ import java.util.Map;
 public class EurekaController {
 
 
-
     @Autowired
     private EurekaInstanceConfigBean eurekaInstanceConfigBean;
 
@@ -28,14 +27,14 @@ public class EurekaController {
 
 
     @GetMapping("/getEurekaRegistedEurekaInfo")
-    public List<ServiceInstance> showEurekaInfo(){
+    public List<ServiceInstance> showEurekaInfo() {
         List<ServiceInstance> instances = discoveryClient.getInstances("ocean-hystrix-provider");
         return instances;
     }
 
 
     @GetMapping("/getEurekaMetadata")
-    public  Map<String, String> getEurekaMetadata(){
+    public Map<String, String> getEurekaMetadata() {
         Map<String, String> metadataMap = eurekaInstanceConfigBean.getMetadataMap();
         String instanceId = eurekaInstanceConfigBean.getInstanceId();
         System.out.println(instanceId);

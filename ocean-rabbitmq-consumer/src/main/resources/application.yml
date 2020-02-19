@@ -9,7 +9,7 @@ spring:
     username: guest
     password: guest
     virtual-host: /
-#    消息回执
+    #    消息回执
     publisher-confirms: true
     publisher-returns: true
     template:
@@ -28,9 +28,9 @@ spring:
 
 mybatis:
   configuration:
-#   是否支持驼峰
+    #   是否支持驼峰
     map-underscore-to-camel-case: true
   type-aliases-package: com.ocean.springclouid.oceanrabbitmqconsumer.entity
-#  增加自定义的handler方法
-#  type-handlers-package:
+  #  增加自定义的handler方法
+  #  type-handlers-package:
   mapper-locations: classpath:mapper/*.xml

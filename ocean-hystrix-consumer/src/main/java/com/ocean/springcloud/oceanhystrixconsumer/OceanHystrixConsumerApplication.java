@@ -11,13 +11,13 @@ import org.springframework.web.client.RestTemplate;
 @EnableHystrixDashboard
 public class OceanHystrixConsumerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(OceanHystrixConsumerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(OceanHystrixConsumerApplication.class, args);
+    }
 
-	@Bean
-	@LoadBalanced
-	RestTemplate restTemplate(){
-		return new RestTemplate();
-	}
+    @Bean
+    @LoadBalanced
+    RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 }

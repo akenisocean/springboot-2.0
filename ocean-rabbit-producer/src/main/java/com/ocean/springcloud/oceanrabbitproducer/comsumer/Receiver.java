@@ -19,7 +19,8 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 public class Receiver {
-    private static final Logger log= LoggerFactory.getLogger(Receiver.class);
+    private static final Logger log = LoggerFactory.getLogger(Receiver.class);
+
     /**
      * FANOUT广播队列监听一.
      *
@@ -30,7 +31,7 @@ public class Receiver {
     @RabbitListener(queues = {"FANOUT_QUEUE_A"})
     public void on(Message message, Channel channel) throws IOException {
         channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
-        log.debug("FANOUT_QUEUE_A "+new String(message.getBody()));
+        log.debug("FANOUT_QUEUE_A " + new String(message.getBody()));
     }
 
     /**
@@ -43,7 +44,7 @@ public class Receiver {
     @RabbitListener(queues = {"FANOUT_QUEUE_B"})
     public void t(Message message, Channel channel) throws IOException {
         channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
-        log.debug("FANOUT_QUEUE_B "+new String(message.getBody()));
+        log.debug("FANOUT_QUEUE_B " + new String(message.getBody()));
     }
 
     /**
@@ -58,18 +59,18 @@ public class Receiver {
         TimeUnit.SECONDS.sleep(2);
         String s = new String(message.getBody());
         String replace = s.replace("\"", "");
-        if (replace.equals("abc")){
+        if (replace.equals("abc")) {
 //            int i  = 1/0;
             channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
-        }else {
-            channel.basicReject(message.getMessageProperties().getDeliveryTag(),false);
-            if (0 == 0){
+        } else {
+            channel.basicReject(message.getMessageProperties().getDeliveryTag(), false);
+            if (0 == 0) {
 //            throw new RuntimeException("接受数据处理错误了");
             }
 //            channel.basicNack(message.getMessageProperties().getDeliveryTag(),true,false);
         }
-        log.info("DIRECT_QUEUE接受到数据",message.toString());
-        log.debug("DIRECT "+new String (message.getBody()));
+        log.info("DIRECT_QUEUE接受到数据", message.toString());
+        log.debug("DIRECT " + new String(message.getBody()));
     }
 
     /**
@@ -82,10 +83,10 @@ public class Receiver {
     @RabbitListener(queues = {"REDIRECT_QUEUE"})
     public void redirect(Message message, Channel channel) throws IOException {
         channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
-        log.debug("dead message  10s 后 消费消息 {}",new String (message.getBody()));
+        log.debug("dead message  10s 后 消费消息 {}", new String(message.getBody()));
     }
 
     public static void main(String[] args) {
-        System.out.println(1/0);
+        System.out.println(1 / 0);
     }
 }

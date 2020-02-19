@@ -9,7 +9,7 @@ import java.util.concurrent.CountDownLatch;
  * @create 2019-01-09 14:13
  * @desc 服务器B
  **/
-public class SampleServiceB extends AbstractService{
+public class SampleServiceB extends AbstractService {
 
     /**
      * 通过构造方法初始化CountDownLatch

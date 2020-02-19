@@ -1,10 +1,9 @@
 package com.ocean.springcloud.oceandemo.error;
 
-import com.github.structlog4j.ILogger;
-import com.github.structlog4j.SLoggerFactory;
 import com.ocean.springcloud.oceandemo.api.BaseResponse;
 import com.ocean.springcloud.oceandemo.api.ResultCode;
 import com.ocean.springcloud.oceandemo.exception.PermissionDeniedException;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
@@ -24,18 +23,17 @@ import javax.validation.ConstraintViolationException;
 import java.util.Set;
 
 /**
- * @desc 统一异常处理类
  * @author jc164
+ * @desc 统一异常处理类
  */
 @RestControllerAdvice
+@Slf4j
 public class GlobalExceptionTranslator {
-
-    static final ILogger logger = SLoggerFactory.getLogger(GlobalExceptionTranslator.class);
 
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public BaseResponse handleError(MissingServletRequestParameterException e) {
-        logger.warn("Missing Request Parameter", e);
+        log.warn("Missing Request Parameter", e);
         String message = String.format("Missing Request Parameter: %s", e.getParameterName());
         return BaseResponse
                 .builder()
@@ -46,7 +44,7 @@ public class GlobalExceptionTranslator {
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public BaseResponse handleError(MethodArgumentTypeMismatchException e) {
-        logger.warn("Method Argument Type Mismatch", e);
+        log.warn("Method Argument Type Mismatch", e);
         String message = String.format("Method Argument Type Mismatch: %s", e.getName());
         return BaseResponse
                 .builder()
@@ -57,7 +55,7 @@ public class GlobalExceptionTranslator {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public BaseResponse handleError(MethodArgumentNotValidException e) {
-        logger.warn("Method Argument Not Valid", e.getMessage());
+        log.warn("Method Argument Not Valid", e.getMessage());
         BindingResult result = e.getBindingResult();
         FieldError error = result.getFieldError();
         String message = String.format("%s:%s", error.getField(), error.getDefaultMessage());
@@ -70,7 +68,7 @@ public class GlobalExceptionTranslator {
 
     @ExceptionHandler(BindException.class)
     public BaseResponse handleError(BindException e) {
-        logger.warn("Bind Exception", e);
+        log.warn("Bind Exception", e);
         FieldError error = e.getFieldError();
         String message = String.format("%s:%s", error.getField(), error.getDefaultMessage());
         return BaseResponse
@@ -82,7 +80,7 @@ public class GlobalExceptionTranslator {
 
     @ExceptionHandler(ConstraintViolationException.class)
     public BaseResponse handleError(ConstraintViolationException e) {
-        logger.warn("Constraint Violation", e);
+        log.warn("Constraint Violation", e);
         Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
         ConstraintViolation<?> violation = violations.iterator().next();
         String path = ((PathImpl) violation.getPropertyPath()).getLeafNode().getName();
@@ -96,7 +94,7 @@ public class GlobalExceptionTranslator {
 
     @ExceptionHandler(NoHandlerFoundException.class)
     public BaseResponse handleError(NoHandlerFoundException e) {
-        logger.error("404 Not Found", e);
+        log.error("404 Not Found", e);
         return BaseResponse
                 .builder()
                 .code(ResultCode.NOT_FOUND)
@@ -106,7 +104,7 @@ public class GlobalExceptionTranslator {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public BaseResponse handleError(HttpMessageNotReadableException e) {
-        logger.error("Message Not Readable", e);
+        log.error("Message Not Readable", e);
         return BaseResponse
                 .builder()
                 .code(ResultCode.MSG_NOT_READABLE)
@@ -116,7 +114,7 @@ public class GlobalExceptionTranslator {
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public BaseResponse handleError(HttpRequestMethodNotSupportedException e) {
-        logger.error("Request Method Not Supported", e);
+        log.error("Request Method Not Supported", e);
         return BaseResponse
                 .builder()
                 .code(ResultCode.METHOD_NOT_SUPPORTED)
@@ -126,7 +124,7 @@ public class GlobalExceptionTranslator {
 
     @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
     public BaseResponse handleError(HttpMediaTypeNotSupportedException e) {
-        logger.error("Media Type Not Supported", e);
+        log.error("Media Type Not Supported", e);
         return BaseResponse
                 .builder()
                 .code(ResultCode.MEDIA_TYPE_NOT_SUPPORTED)
@@ -136,7 +134,7 @@ public class GlobalExceptionTranslator {
 
     @ExceptionHandler(ServiceException.class)
     public BaseResponse handleError(ServiceException e) {
-        logger.error("Service Exception", e);
+        log.error("Service Exception", e);
         return BaseResponse
                 .builder()
                 .code(e.getResultCode())
@@ -146,7 +144,7 @@ public class GlobalExceptionTranslator {
 
     @ExceptionHandler(PermissionDeniedException.class)
     public BaseResponse handleError(PermissionDeniedException e) {
-        logger.error("Permission Denied", e);
+        log.error("Permission Denied", e);
         return BaseResponse
                 .builder()
                 .code(e.getResultCode())
@@ -156,7 +154,7 @@ public class GlobalExceptionTranslator {
 
     @ExceptionHandler(Throwable.class)
     public BaseResponse handleError(Throwable e) {
-        logger.error("Internal Server Error", e);
+        log.error("Internal Server Error", e);
         return BaseResponse
                 .builder()
                 .code(ResultCode.INTERNAL_SERVER_ERROR)

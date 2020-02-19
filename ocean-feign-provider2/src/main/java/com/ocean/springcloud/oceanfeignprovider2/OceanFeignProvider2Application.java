@@ -8,9 +8,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDiscoveryClient
 public class OceanFeignProvider2Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(OceanFeignProvider2Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(OceanFeignProvider2Application.class, args);
+    }
 
 }
 

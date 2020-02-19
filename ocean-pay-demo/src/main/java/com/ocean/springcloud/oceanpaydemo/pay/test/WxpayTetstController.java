@@ -27,11 +27,12 @@ public class WxpayTetstController {
 
     @Resource(name = "wxPayBarCodePaymentStrategy")
     private PayStrategy payStrategy;
+
     @GetMapping("/barCodePayment/{authCode}")
-    public void barCodePayment(@PathVariable("authCode")String authCode) throws UnknownHostException {
+    public void barCodePayment(@PathVariable("authCode") String authCode) throws UnknownHostException {
         WxPayBarCodePaymentDTO dto = new WxPayBarCodePaymentDTO();
         dto.setBody("朕爱出行测试操作");
-        dto.setOutTradeNo(UUID.randomUUID().toString().replaceAll("-","").substring(0,32));
+        dto.setOutTradeNo(UUID.randomUUID().toString().replaceAll("-", "").substring(0, 32));
         dto.setTotalFee("0.01");
         dto.setSpbillCreateIp(InetAddress.getLocalHost().getHostAddress());
         dto.setAuthCode(authCode);
@@ -40,7 +41,6 @@ public class WxpayTetstController {
         WxPayBarCodePaymentVO execute = payContent.execute(dto);
         System.out.println(execute);
     }
-
 
 
 }

@@ -21,8 +21,9 @@ public class SpringMvcConfig implements WebMvcConfigurer {
         //添加自定义的拦截器
         registry.addInterceptor(apiIdempotentInterceptor());
     }
+
     @Bean
-    public ApiIdempotentInterceptor apiIdempotentInterceptor(){
+    public ApiIdempotentInterceptor apiIdempotentInterceptor() {
         return new ApiIdempotentInterceptor();
     }
 }

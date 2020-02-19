@@ -1,12 +1,12 @@
 .title {
-	background-color: royalblue;
+    background-color: royalblue;
 }
 
 .title-color {
-	color: darkslategrey;
-	font-size: xx-large;
+    color: darkslategrey;
+    font-size: xx-large;
 }
 
 .mui-bar-tab .mui-tab-item.mui-active {
-	color: red;
+    color: red;
 }

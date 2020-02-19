@@ -17,11 +17,11 @@ public class StoreController {
 
 
     @GetMapping("/stores")
-    public List<Store> getStores(){
+    public List<Store> getStores() {
         List<Store> list = new ArrayList<>();
-        list.add(new Store("1","2","3"));
-        list.add(new Store("4","2","3"));
-        list.add(new Store("5","2","3"));
+        list.add(new Store("1", "2", "3"));
+        list.add(new Store("4", "2", "3"));
+        list.add(new Store("5", "2", "3"));
 
         try {
             TimeUnit.SECONDS.sleep(3);

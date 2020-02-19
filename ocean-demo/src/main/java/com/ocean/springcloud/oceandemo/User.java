@@ -12,6 +12,6 @@ import javax.validation.constraints.Min;
  */
 @Data
 public class User {
-    @Min(value = 18,message = "未成年禁止入内")
+    @Min(value = 18, message = "未成年禁止入内")
     private Integer age;
 }

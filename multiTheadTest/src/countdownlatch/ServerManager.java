@@ -28,6 +28,7 @@ public class ServerManager {
 
     /**
      * 检测服务是否都启动完毕
+     *
      * @return
      */
     public static boolean checkServiceStatus() {
@@ -39,8 +40,8 @@ public class ServerManager {
         } catch (InterruptedException e) {
             return false;
         }
-        for (Service service:services) {
-            if (!service.isStarted()){
+        for (Service service : services) {
+            if (!service.isStarted()) {
                 allIsOK = false;
                 break;
             }

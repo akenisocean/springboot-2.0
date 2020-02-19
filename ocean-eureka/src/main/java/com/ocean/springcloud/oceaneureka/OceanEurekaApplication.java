@@ -4,11 +4,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
+/**
+ * eureka分布式注册中心
+ * @author chao
+ */
 @SpringBootApplication
 @EnableEurekaServer
 public class OceanEurekaApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(OceanEurekaApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(OceanEurekaApplication.class, args);
+    }
 }

@@ -32,6 +32,7 @@ public class SendController {
 
     @Resource
     private MyReturnCallback myReturnCallback;
+
     /**
      * 测试广播模式.
      *

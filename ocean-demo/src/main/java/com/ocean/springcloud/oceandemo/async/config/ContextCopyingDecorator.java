@@ -12,9 +12,9 @@ public class ContextCopyingDecorator implements TaskDecorator {
 
 
     /**
-     * @Async每次调用都会走这个装饰器中的方法
      * @param runnable
      * @return
+     * @Async每次调用都会走这个装饰器中的方法
      */
     @Override
     public Runnable decorate(Runnable runnable) {

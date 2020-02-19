@@ -12,15 +12,16 @@ http://www.broadview.com.cn/31065
 */
 
 public interface TaskRunnerSpec {
-  /**
-   * 初始化操作
-   */
-  public void init();
+    /**
+     * 初始化操作
+     */
+    public void init();
 
-  /**
-   * 提交操作
-   * @param task
-   * @throws InterruptedException
-   */
-  public void submit(Runnable task) throws InterruptedException;
+    /**
+     * 提交操作
+     *
+     * @param task
+     * @throws InterruptedException
+     */
+    public void submit(Runnable task) throws InterruptedException;
 }

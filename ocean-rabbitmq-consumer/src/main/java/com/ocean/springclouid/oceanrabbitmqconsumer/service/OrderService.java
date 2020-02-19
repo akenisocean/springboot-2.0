@@ -16,33 +16,33 @@ import java.util.Date;
 @Service
 public class OrderService {
 
-	@Autowired
-	private OrderMapper orderMapper;
-	
-	@Autowired
-	private BrokerMessageLogMapper brokerMessageLogMapper;
-	
-	@Autowired
-	private RabbitOrderSender rabbitOrderSender;
-	
-	
-	public void createOrder(Order order) throws Exception {
-		// order current time 
-		Date orderTime = new Date();
-		// order insert
-		orderMapper.insert(order);
-		// log insert
-		BrokerMessageLog brokerMessageLog = new BrokerMessageLog();
-		brokerMessageLog.setMessageId(order.getMessageId());
-		//save order message as json
-		brokerMessageLog.setMessage(FastJsonConvertUtil.convertObjectToJSON(order));
-		brokerMessageLog.setStatus("0");
-		brokerMessageLog.setNextRetry(DateUtils.addMinutes(orderTime, Constants.ORDER_TIMEOUT));
-		brokerMessageLog.setCreateTime(new Date());
-		brokerMessageLog.setUpdateTime(new Date());
-		brokerMessageLogMapper.insert(brokerMessageLog);
-		// order message sender
-		rabbitOrderSender.sendOrder(order);
-	}
-	
+    @Autowired
+    private OrderMapper orderMapper;
+
+    @Autowired
+    private BrokerMessageLogMapper brokerMessageLogMapper;
+
+    @Autowired
+    private RabbitOrderSender rabbitOrderSender;
+
+
+    public void createOrder(Order order) throws Exception {
+        // order current time
+        Date orderTime = new Date();
+        // order insert
+        orderMapper.insert(order);
+        // log insert
+        BrokerMessageLog brokerMessageLog = new BrokerMessageLog();
+        brokerMessageLog.setMessageId(order.getMessageId());
+        //save order message as json
+        brokerMessageLog.setMessage(FastJsonConvertUtil.convertObjectToJSON(order));
+        brokerMessageLog.setStatus("0");
+        brokerMessageLog.setNextRetry(DateUtils.addMinutes(orderTime, Constants.ORDER_TIMEOUT));
+        brokerMessageLog.setCreateTime(new Date());
+        brokerMessageLog.setUpdateTime(new Date());
+        brokerMessageLogMapper.insert(brokerMessageLog);
+        // order message sender
+        rabbitOrderSender.sendOrder(order);
+    }
+
 }

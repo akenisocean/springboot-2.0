@@ -10,16 +10,26 @@ import lombok.Data;
  */
 @Data
 public class CouponConfQrReq {
-    /**优惠券编号*/
+    /**
+     * 优惠券编号
+     */
     private Integer id;
-    /**优惠券名称*/
+    /**
+     * 优惠券名称
+     */
     private String name;
-    /**优惠券类型*/
+    /**
+     * 优惠券类型
+     */
     private Integer couponType;
 
     private Integer status;
-    /**页码*/
+    /**
+     * 页码
+     */
     private Integer pageIndex = 1;
-    /**页大小*/
+    /**
+     * 页大小
+     */
     private Integer pageSize = 20;
 }

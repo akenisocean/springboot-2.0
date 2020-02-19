@@ -19,14 +19,15 @@ import java.time.LocalDateTime;
 public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
 
     private static ChannelGroup clients = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, TextWebSocketFrame textSocket) throws Exception {
         //获取客户端发送过来的字符串
         String content = textSocket.text();
-        System.err.println("接受到客户端的数据："+content.toString());
+        System.err.println("接受到客户端的数据：" + content.toString());
 
-        for (Channel channel: clients) {
-            channel.writeAndFlush(new TextWebSocketFrame("【服务器再】："+ LocalDateTime.now()+"接受到消息,消息为："+content));
+        for (Channel channel : clients) {
+            channel.writeAndFlush(new TextWebSocketFrame("【服务器再】：" + LocalDateTime.now() + "接受到消息,消息为：" + content));
         }
 
     }
@@ -34,6 +35,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
 
     /**
      * 当客户端连接之后（打开连接）
+     *
      * @param ctx channle的全局上下文
      * @throws Exception
      */
@@ -45,6 +47,6 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
         clients.remove(ctx.channel());
-        System.err.println(ctx.channel().id()+"已经移除");
+        System.err.println(ctx.channel().id() + "已经移除");
     }
 }

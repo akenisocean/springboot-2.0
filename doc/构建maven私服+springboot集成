@@ -1,0 +1,164 @@
+# 大纲
+- 安装docker和docker-compose
+- 通过docker-compose.yml文件启动私服
+- 配置私服
+- springboot上传指定的jar包到私服
+- springboot从指定的私服上面下载jar包
+
+## 安装docker和docker-compose
+这里不多做安装教程，具体安装过程查看docker官方文档即可轻松搞定。
+- docker安装官方文档(我以centos7安装为例): https://docs.docker.com/install/linux/docker-ce/centos/
+```shell script
+# docker常用命令
+docker images
+docker ps 
+docker run 
+docker stop 
+```
+- docker-compose官方安装文档:  https://docs.docker.com/compose/install/
+
+## 通过docker-coppose一件启动私服
+```shell script
+vim docker-compose-nexus3.yml
+``` 
+```yaml
+version: '3.1'
+services:
+  nexus3:
+    image: sonatype/nexus3 
+    restart: always
+    container_name: nexus3
+    hostname: nexus3
+    ports:
+# 设置对外提供接口
+      - 8081:8081
+    volumes:
+      - nexus3-data:/var/nexus-data
+
+volumes:
+  nexus3-data:
+    driver: local
+```
+启动nexus3私服
+```shell script
+#  命令详情可以通过 docker-compose --help命令查看
+docker-compose -f docker-compose-nexus3.yml up -d
+```
+启动完成后通过如下命令查看
+```shell script
+docker-compose -f docker-compose-nexus3.yml ps
+```
+
+
+## 配置私服
+在浏览器输入对应的nexu3的地址
+```text
+http://{ip}:8081/
+```
+![nexus3-初始页面.jpg](picture/maven-nexus/nexus3-初始页面.jpg)
+
+点击右上方的进行登录操作，默认的账号是admin/{镜像nexus-data/password.admin}，备注： 密码需要到容器内部中查看
+![nexus3-查看初始化密码.jpg](picture/maven-nexus/nexus3-查看初始化密码.jpg)
+
+登录进去后让你重新设置admin的密码。设置好后则可以进行四个私服的仓库创建了
+可以看到默认情况下Nexus会帮我们创建了几个仓库，仔细观察红色框住的地方，里面有几种仓库的类型，解释如下：
+- `proxy`: 远程仓库的地址，比如说nexus配置了一个`central repository`的`proxy`,当用户向这个`proxy`请求一个`artifact`的时候，会现在本地查找，如果找不到，则会从远程仓库下载，然后返回给用户。
+- `hosted`: 宿主仓库，用户可以把自己的一些仓库`deploy`到这个仓库中
+- `group`: 仓库组，是nexus特有的概念，目的是将多个仓库整合，对用户暴露统一的地址，这样就不需要配置多个仓库地址。
+
+下面我们仔细看一下里面的一些仓库。点击maven-central仓库:
+![public-central查看.jpg](picture/maven-nexus/public-central查看.jpg)
+可以看到是一个proxy类型的仓库，他代理的远程仓库地址是`https://repo1.maven.org/maven2/`。
+
+后退，在进入maven-public查看:
+![nexus3-group.jpg](picture/maven-nexus/nexus3-group.jpg)
+可以看到这是一个group类型的仓库，里面包含了maven-releases/maven-snapshots/maven-central仓库，意思是我们只需要在本地添加这个仓库，则可以依赖到上述3个仓库中的库了。
+
+添加用户
+为了实现本地上传代码库，并且实现依赖的示例，这里创建一个新的仓库(也可以选用已经存在的仓库)和一个用户
+创建仓库，点击`Create repository`,然后选择maven2(hosted)然后输入仓库名称`（jingkun-releases）`。在version policy中选择这个仓库的类型，这里选择`release`,在`Deployment policy`中选择`Allow redeploy`（这个很重要）.
+- version policy : release=maven中的release才可以发布上来      release=snapshot等于只有是snapshot(快照)版本才可以发布。 这在后面上传jar包到私人仓库很重要。
+![nexus3-createhosted.jpg](picture/maven-nexus/nexus3-createhosted.jpg)
+![nexus3-adduser.jpg](picture/maven-nexus/nexus3-adduser.jpg)
+
+
+添加一个group用来管理创建好的上传snpshot和release版本的仓库。
+`Create Repository`中选择group,等操作即可。这里就不进行演示。
+
+
+## springboot中配置上传jar包到仓库中
+1. 在maven的settings.xml配置文件中添加服务端中创建好的用户名称
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <servers>
+      <server>
+        <id>jingkun-releases</id>
+        <username>你创建的账号</username>
+        <password>你创建的密码</password>
+      </server>
+     <server>
+        <id>jingkun-snapshots</id>
+        <username>你创建的账号</username>
+        <password>你创建的密码</password>
+      </server>
+    </servers>
+</settings>
+```
+
+2. 在项目的`pom.xml`配置文件中添加如下内容:
+```xml
+<!--mvn deploy上床代码时指定的仓库地址指定仓库地址-->
+    <distributionManagement>
+        <!--release仓库配置-->
+        <repository>
+            <!--此名称要和${MAVEN_HOME}/settings.xml中设置的ID一致-->
+            <id>jingkun-snapshots</id>
+            <url>http://192.168.3.7:8081/repository/jingkun-releases/</url>
+        </repository>
+        <!--snapshot仓库配置-->
+        <snapshotRepository>
+            <id>jingkun-releases</id>
+            <url>http://192.168.3.7:8081/repository/jingkun-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <!--发布代码Jar插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+            <!--发布源码插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+```
+打开终端窗口进行测试上传
+```shell script
+mvn deploy
+```
+![nexus3-release.jpg](picture/maven-nexus/nexus3-release.jpg)
+
+
+
+
+
+
+

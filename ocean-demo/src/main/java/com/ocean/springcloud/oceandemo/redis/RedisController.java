@@ -1,7 +1,6 @@
 package com.ocean.springcloud.oceandemo.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,8 +16,8 @@ public class RedisController {
 
     static String watchkeys = "watchkeys";// 监视keys
 
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+//    @Autowired
+//    private StringRedisTemplate stringRedisTemplate;
 
 //    @PostConstruct
 //    public void init(){
@@ -30,11 +29,11 @@ public class RedisController {
 //    }
 
     @GetMapping("/secondKill")
-    public void secondKill(){
+    public void secondKill() {
 
     }
 
-    public void haha(){
+    public void haha() {
 //        try {
 //            ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
 //            redisTemplate.setEnableTransactionSupport(true);

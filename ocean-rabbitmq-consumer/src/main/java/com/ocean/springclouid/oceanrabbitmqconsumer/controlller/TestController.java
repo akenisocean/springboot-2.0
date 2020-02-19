@@ -20,8 +20,6 @@ import java.util.concurrent.TimeUnit;
 public class TestController {
 
 
-
-
     @GetMapping("/book")
     public ResponseEntity<Book> showBook() {
         Book book = Book.builder().name("java开发从入门到放弃").price(new BigDecimal("25.66").doubleValue()).build();

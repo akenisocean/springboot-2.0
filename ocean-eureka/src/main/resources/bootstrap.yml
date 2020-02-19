@@ -1,3 +1,16 @@
 spring:
+  banner:
+    image:
+      location: banner.txt
+  application:
+    name: ocean-eurekar
   profiles:
-    active: dev
+    active: @maven.profiles.activation@
+server:
+  port: 8761
+
+info:
+  app:
+    name: ${spring.application.name}
+    description: Eureka 注册中心
+    version: 1.0.0

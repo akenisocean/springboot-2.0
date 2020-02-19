@@ -5,30 +5,33 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.6.RELEASE</version>
+        <version>2.2.4.RELEASE</version>
         <relativePath/>
     </parent>
 
     <groupId>com.ocean.springcloud</groupId>
     <artifactId>spring-cloud-docker-in-action</artifactId>
-    <version>1.0</version>
+    <name>spring-cloud-docker-in-action</name>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
+    <!--项目总描述-->
     <description>ocean的springcloud</description>
+    <!--个人网站地址-->
     <url>http://happygiraffeisfun.com</url>
-
-
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
+        <spring-cloud.version>Hoxton.SR1</spring-cloud.version>
         <docker.push.image.name>akenisocean</docker.push.image.name>
         <docker.image.tag>${project.version}</docker.image.tag>
+        <!--个人阿里云docker仓库地址-->
         <docker.repostory>registry.cn-shanghai.aliyuncs.com</docker.repostory>
         <docker.registry.name>happygiraffe</docker.registry.name>
         <fastjson.version>1.2.59</fastjson.version>
-        <apollo.version>1.4.0</apollo.version>
+        <apollo.version>1.5.1</apollo.version>
+        <docker.plugin.version>1.1.1</docker.plugin.version>
     </properties>
     <!--添加对应的模块-->
     <modules>
@@ -37,14 +40,47 @@
         <module>ocean-hystrix-consumer</module>
         <module>ocean-hystrix-consumer2</module>
         <module>ocean-rabbit-producer</module>
-        <module>ocean-demo2</module>
+        <module>ocean-ldap</module>
+        <module>common-lib</module>
+        <module>ocean-demo</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <!--springcloud-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--携程apoll开源配置中心-->
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client</artifactId>
+                <version>${apollo.version}</version>
+            </dependency>
+            <!--阿里巴巴fastjson-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
+        <!--公共组件-->
+<!--        <dependency>-->
+<!--            <groupId>com.ocean.springcloud</groupId>-->
+<!--            <artifactId>common-lib</artifactId>-->
+<!--            <version>1.0.0</version>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>com.ctrip.framework.apollo</groupId>
-            <artifactId>apollo-client</artifactId>
-            <version>${apollo.version}</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
@@ -120,9 +156,28 @@
                 </resources>
             </build>
         </profile>
+
+        <!--swarm集群-->
+        <profile>
+            <id>swarm</id>
+            <properties>
+                <maven.profiles.activation>swarm</maven.profiles.activation>
+            </properties>
+            <build>
+                <finalName>${project.name}-${project.version}</finalName>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
     </profiles>
 
 
+
+    <!--插件-->
     <build>
         <plugins>
             <!-- Spring Boot提供Maven编译插件 -->
@@ -153,67 +208,18 @@
                     <skipTests>true</skipTests>
                 </configuration>
             </plugin>
-            <!-- generator反向生成插件 -->
-            <!--<plugin>-->
-                <!--<groupId>org.mybatis.generator</groupId>-->
-                <!--<artifactId>mybatis-generator-maven-plugin</artifactId>-->
-                <!--<version>1.3.5</version>-->
-                <!--<dependencies>-->
-                    <!--<dependency>-->
-                        <!--<groupId>mysql</groupId>-->
-                        <!--<artifactId>mysql-connector-java</artifactId>-->
-                        <!--<version>${mysql.version}</version>-->
-                    <!--</dependency>-->
-                <!--</dependencies>-->
-                <!--<configuration>-->
-                    <!--&lt;!&ndash;配置文件的路径&ndash;&gt;-->
-                    <!--<configurationFile>${project.basedir}/src/main/resources/generatorConfig.xml</configurationFile>-->
-                    <!--<overwrite>true</overwrite>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-        </plugins>
 
-        <resources>
-            <resource>
-                <!-- 自己(非Maven引入)导入jar包的目录 -->
-                <directory>src/main/resources/lib</directory>
-                <!-- Spring-Boot项目打包后存放的目录 -->
-                <targetPath>BOOT-INF/lib/</targetPath>
-                <includes>
-                    <include>**/*.jar</include>
-                </includes>
-            </resource>
-            <resource>
-                <!-- 是否替换@xx@表示的maven properties属性值 -->
-                <filtering>true</filtering>
-                <!-- 源文件存放目录 -->
-                <directory>src/main/resources</directory>
-                <!-- 打包后存放目录 -->
-                <targetPath>BOOT-INF/classes/</targetPath>
-            </resource>
-        </resources>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${docker.plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
     </build>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 </project>

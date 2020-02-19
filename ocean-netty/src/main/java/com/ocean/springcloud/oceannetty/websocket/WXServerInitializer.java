@@ -24,7 +24,7 @@ public class WXServerInitializer extends ChannelInitializer<SocketChannel> {
         pipeline.addLast(new ChunkedWriteHandler());
         //对HttpMessage聚合，聚合成FullHttpRequest或FullHttpResponse
         //几乎在netty中的编程，都会使用到此handler
-        pipeline.addLast("aggregator",new HttpObjectAggregator(1024*64));
+        pipeline.addLast("aggregator", new HttpObjectAggregator(1024 * 64));
 
         //--------------------以上时支持Http协议---------------------------------
         //websocket处理的协议，并且指定客户端连接访问的路由：/ws

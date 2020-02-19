@@ -1,11 +1,18 @@
 spring:
   mail:
-    host: smtp.gmail.com
-    username: akenisocean164214878@gmail.com
-    password: jichao164214878
-    default-encoding: UTF-8
-    port: 465
+    host: 'smtp.163.com'
+    username: jc164214878@163.com
+    password: a164214878
+#    port: 465
     test-connection: true
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    mode: HTML5
+    servlet:
+      content-type: text/html
 logging:
   level:
     root: info
+server:
+  port: 8081

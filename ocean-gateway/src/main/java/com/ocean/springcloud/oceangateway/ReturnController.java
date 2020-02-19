@@ -21,7 +21,7 @@ public class ReturnController {
 
 
     @GetMapping("/incaseoffailureusethis")
-    public String incaseoffailureusethis(){
+    public String incaseoffailureusethis() {
         return "Hystrix.incaseoffailureusethis";
     }
 

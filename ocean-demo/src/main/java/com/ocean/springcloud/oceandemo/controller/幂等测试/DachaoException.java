@@ -15,7 +15,8 @@ import lombok.*;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class DachaoException extends RuntimeException {
-     private String code;
-     @NonNull private String msg;
+    private String code;
+    @NonNull
+    private String msg;
 
 }

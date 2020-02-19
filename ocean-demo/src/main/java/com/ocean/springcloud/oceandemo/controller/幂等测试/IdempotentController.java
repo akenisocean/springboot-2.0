@@ -15,19 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/token")
 public class IdempotentController {
 
-    private int i  = 0;
+    private int i = 0;
 
-    @Autowired
-    private TokenService tokenService;
-
-    @GetMapping
-    public ServerResponse token() {
-        return tokenService.createToken();
-    }
+//    @Autowired
+//    private TokenService tokenService;
+//
+//    @GetMapping
+//    public ServerResponse token() {
+//        return tokenService.createToken();
+//    }
 
     @GetMapping("/testIdempotent")
     @ApiIdempotent
-    public void testIdempotent(){
+    public void testIdempotent() {
         System.out.println(i);
     }
 }

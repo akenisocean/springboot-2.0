@@ -12,7 +12,7 @@ public class Test {
             public void run() {
                 try {
                     boolean flag = true;
-                    while (flag){
+                    while (flag) {
                         Thread.currentThread().interrupt();
                         System.out.print(1);
 //                        TimeUnit.SECONDS.sleep(3);

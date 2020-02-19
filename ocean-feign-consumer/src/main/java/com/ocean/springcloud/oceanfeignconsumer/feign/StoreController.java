@@ -22,13 +22,13 @@ public class StoreController {
 
 
     @GetMapping("/stores")
-    public List<Store> getStores(){
+    public List<Store> getStores() {
         List<Store> stores = storeClient.getStores();
         return stores;
     }
 
     @GetMapping("/stores2")
-    public List<Store> getStores2(){
+    public List<Store> getStores2() {
         List<Store> stores2 = storeClient2.getStores();
         return stores2;
     }

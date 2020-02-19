@@ -14,7 +14,7 @@ import java.util.concurrent.TimeoutException;
  */
 public class Producer {
     @Test
-    public void testBasicPublish() throws IOException,TimeoutException {
+    public void testBasicPublish() throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setVirtualHost("/");
         factory.setHost("114.67.224.231");

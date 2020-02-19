@@ -14,11 +14,11 @@ public class HelloController {
     @RoutingInjected
     private HelloService helloService;
 
-    public void sayHello(){
+    public void sayHello() {
         this.helloService.sayHello();
     }
 
-    public void sayHi(){
+    public void sayHi() {
         this.helloService.sayHi();
     }
 }

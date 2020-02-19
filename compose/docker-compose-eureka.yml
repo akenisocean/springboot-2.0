@@ -9,15 +9,15 @@ services:
     image: registry.cn-shanghai.aliyuncs.com/happygiraffe/ocean-eureka:0.1
     # 暴露的端口号
     ports:
-        - "8761:8761"
+      - "8761:8761"
     # 设置卷挂载的路径 /opt/data代表的是日志存储路径
     volumes:
-        - /data/volume/eureka:/opt/data
+      - /data/volume/eureka:/opt/data
     # 设置权限 ：拥有root权限
     privileged: true
     networks:
       - default
-      
+
 networks:
   default:
     external:

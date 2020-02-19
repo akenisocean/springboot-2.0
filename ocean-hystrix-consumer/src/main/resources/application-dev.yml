@@ -5,7 +5,7 @@ spring:
 eureka:
   client:
     service-url:
-       defaultZone: http://39.108.9.37:8761/eureka/
+      defaultZone: http://39.108.9.37:8761/eureka/
 #
 #hystrix:
 #  command:

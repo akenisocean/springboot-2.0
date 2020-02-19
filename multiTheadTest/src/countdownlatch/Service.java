@@ -18,6 +18,7 @@ public interface Service {
 
     /**
      * 服务是否启动
+     *
      * @return
      */
     boolean isStarted();

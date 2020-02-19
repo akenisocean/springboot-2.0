@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.MessagingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,12 +20,18 @@ import java.util.Map;
 public class EmailController {
     @Autowired
     private MailService mailService;
+
     @GetMapping("/sendEmail")
-    public Map<String,String> sendEmail(){
-        mailService.sendSimpleMail("akenisocean164214878@gmail.com","这是我的第一份邮件",
+    public Map<String, String> sendEmail() {
+        mailService.sendSimpleMail("akenisocean164214878@gmail.com", "这是我的第一份邮件",
                 "springboot发送的第一份邮件");
         HashMap<String, String> ma = new HashMap<>();
-        ma.put("chenggong","111}");
+        ma.put("chenggong", "111}");
         return ma;
+    }
+
+    @GetMapping("/sendMail2")
+    public void sendMail2() throws MessagingException {
+
     }
 }

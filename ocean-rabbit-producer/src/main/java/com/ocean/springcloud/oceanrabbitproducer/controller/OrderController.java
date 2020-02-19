@@ -24,7 +24,7 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping("/createOrder")
-    public Order createOrder(/*@RequestBody Order order*/){
+    public Order createOrder(/*@RequestBody Order order*/) {
         Order order = new Order();
         order.setId(UUID.randomUUID().toString());
         order.setName(Thread.currentThread().getName());
@@ -32,8 +32,8 @@ public class OrderController {
         try {
             orderService.createOrder(order);
         } catch (Exception e) {
-          log.error("创建订单出错;{}",e);
-          return new Order();
+            log.error("创建订单出错;{}", e);
+            return new Order();
         }
         return order;
     }

@@ -20,15 +20,15 @@ public class WXServer {
 
         try {
             ServerBootstrap bootstrap = new ServerBootstrap();
-            bootstrap.group(mainGroup,subGroup)
+            bootstrap.group(mainGroup, subGroup)
                     .channel(NioServerSocketChannel.class)
                     .childHandler(new WXServerInitializer());
 
             ChannelFuture future = bootstrap.bind(8080).sync();
             future.channel().closeFuture().sync();
         } finally {
-             mainGroup.shutdownGracefully();
-             subGroup.shutdownGracefully();
+            mainGroup.shutdownGracefully();
+            subGroup.shutdownGracefully();
         }
 
 

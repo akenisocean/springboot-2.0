@@ -1,0 +1,30 @@
+## 简介
+
+
+
+## elasitcjob的三种模式
+- SimpleJob 最常用
+
+
+## springboot快速集成
+1. 添加对应的jar包
+```xml
+<!--elastic-job分布式定时任务-->
+<dependency>
+    <groupId>com.dangdang</groupId>
+    <artifactId>elastic-job-lite-core</artifactId>
+    <version>2.1.5</version>
+</dependency>
+```
+
+2. 添加配置属性
+```yaml
+elasticjob:
+     serverlists: 172.31.31.48:2181
+     namespace: boot-job
+```
+
+3. 配置zookeeper注册中心
+```java
+
+```

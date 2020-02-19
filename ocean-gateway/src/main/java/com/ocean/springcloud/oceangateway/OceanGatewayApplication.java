@@ -12,22 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class OceanGatewayApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(OceanGatewayApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(OceanGatewayApplication.class, args);
+    }
 
 
-	@HystrixCommand(commandKey = "fallbackcmd")
-	public String fallbackcmd(){
-		return "fallbackcmd.laji";
-	}
+    @HystrixCommand(commandKey = "fallbackcmd")
+    public String fallbackcmd() {
+        return "fallbackcmd.laji";
+    }
 
 
-
-	@Bean(name = "hostAddrKeyResolver")
-	public HostAddrKeyResolver hostAddrKeyResolver() {
-		return new HostAddrKeyResolver();
-	}
+    @Bean(name = "hostAddrKeyResolver")
+    public HostAddrKeyResolver hostAddrKeyResolver() {
+        return new HostAddrKeyResolver();
+    }
 
 //	@Bean
 //	public RateLimiter myRateLimiter(){

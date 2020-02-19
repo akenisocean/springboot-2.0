@@ -16,8 +16,8 @@ import java.lang.reflect.Method;
  */
 public class ApiIdempotentInterceptor implements HandlerInterceptor {
 
-    @Autowired
-    private TokenService tokenService;
+//    @Autowired
+//    private TokenService tokenService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -27,14 +27,14 @@ public class ApiIdempotentInterceptor implements HandlerInterceptor {
         HandlerMethod handlerMethod = (HandlerMethod) handler;
         Method method = handlerMethod.getMethod();
         ApiIdempotent apiIdempotent = method.getAnnotation(ApiIdempotent.class);
-        if (apiIdempotent != null){
-            check(request);// 幂等性校验, 校验通过则放行, 校验失败则抛出异常, 并通过统一异常处理返回友好提示
+        if (apiIdempotent != null) {
+//            check(request);// 幂等性校验, 校验通过则放行, 校验失败则抛出异常, 并通过统一异常处理返回友好提示
         }
         return true;
 
     }
 
-    private void check(HttpServletRequest request) {
-        tokenService.checkToken(request);
-    }
+//    private void check(HttpServletRequest request) {
+//        tokenService.checkToken(request);
+//    }
 }

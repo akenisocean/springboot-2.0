@@ -76,6 +76,4 @@ public class WxPayBarCodePaymentVO extends BaseWxPayResult implements Serializab
 //    private String timeEnd;
 
 
-
-
 }

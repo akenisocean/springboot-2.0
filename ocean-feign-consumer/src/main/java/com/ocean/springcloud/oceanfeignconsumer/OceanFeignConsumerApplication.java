@@ -12,9 +12,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableCircuitBreaker
 public class OceanFeignConsumerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(OceanFeignConsumerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(OceanFeignConsumerApplication.class, args);
+    }
 
 }
 

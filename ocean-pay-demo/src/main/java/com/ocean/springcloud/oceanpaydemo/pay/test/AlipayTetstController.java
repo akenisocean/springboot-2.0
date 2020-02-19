@@ -25,8 +25,9 @@ public class AlipayTetstController {
 
     @Resource(name = "aliPayBarCodePaymentStrategy")
     private PayStrategy payStrategy;
+
     @GetMapping("/barCodePayment/{authCode}")
-    public void barCodePayment(@PathVariable("authCode")String authCode){
+    public void barCodePayment(@PathVariable("authCode") String authCode) {
         AliPayBarCodePaymentDTO ali = new AliPayBarCodePaymentDTO();
         ali.setOutTradeNo(UUID.randomUUID().toString());
         ali.setAuthCode(authCode);
@@ -34,25 +35,21 @@ public class AlipayTetstController {
         ali.setStoreId("dachaoSystem");
         ali.setTotalAmount("0.01");
         ali.setTimeoutExpress("2m");
-        PayContent<AliPayBarCodePaymentVO,AliPayBarCodePaymentDTO> payContent = new PayContent(payStrategy);
+        PayContent<AliPayBarCodePaymentVO, AliPayBarCodePaymentDTO> payContent = new PayContent(payStrategy);
         AliPayBarCodePaymentVO execute = payContent.execute(ali);
     }
 
 
-
-
     @Resource(name = "aliPayBarCodeQueryStrategy")
     private PayStrategy payStrategy2;
+
     @GetMapping("/barCodePaymentQuery/{authCode}")
-    public void barCodePayment2(@PathVariable("authCode")String authCode){
+    public void barCodePayment2(@PathVariable("authCode") String authCode) {
         AliPayBarCodeQueryDTO dto = new AliPayBarCodeQueryDTO();
         dto.setOutTradeNo(authCode);
         PayContent<AliPayBarCodePaymentVO, AliPayBarCodeQueryDTO> payContent = new PayContent(payStrategy2);
         AliPayBarCodePaymentVO execute = payContent.execute(dto);
     }
-
-
-
 
 
 }

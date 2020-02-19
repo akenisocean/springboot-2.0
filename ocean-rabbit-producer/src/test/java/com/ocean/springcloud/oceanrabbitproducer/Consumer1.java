@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public class Consumer1 {
     @Test
-    public void testBasicConsumer1() throws Exception{
+    public void testBasicConsumer1() throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setVirtualHost("/");
         factory.setHost("114.67.224.231");
@@ -38,11 +38,11 @@ public class Consumer1 {
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                 String message = new String(body, "UTF-8");
                 System.out.println(message);
-                if (message.contains("3")){
+                if (message.contains("3")) {
 //                    channel.basicNack(envelope.getDeliveryTag(), false,true);
                     channel.basicRecover(true);
-                }else {
-                    channel.basicAck(envelope.getDeliveryTag(),false);
+                } else {
+                    channel.basicAck(envelope.getDeliveryTag(), false);
                 }
             }
         };

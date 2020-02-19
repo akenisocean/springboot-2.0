@@ -26,10 +26,10 @@ public class TerminatableTaskRunner implements TaskRunnerSpec {
 
     @Override
     public void init() {
-      final Thread t = workerThread;
-      if (null != t){
-          t.start();
-      }
+        final Thread t = workerThread;
+        if (null != t) {
+            t.start();
+        }
     }
 
     @Override
@@ -38,11 +38,11 @@ public class TerminatableTaskRunner implements TaskRunnerSpec {
         reservations.incrementAndGet();
     }
 
-    public void shutdown(){
+    public void shutdown() {
         System.out.println("Shutting down service...");
         inUse = false;
         final Thread t = workerThread;
-        if (null != t){
+        if (null != t) {
             //线程停止操作
             t.interrupt();
         }

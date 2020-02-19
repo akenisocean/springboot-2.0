@@ -24,20 +24,20 @@ feign:
 
 
 hystrix:
-    command:
-        default:
-            execution:
-                timeout:
-                    # ÊÇ·ñÆôÓÃ¶ÏÂ·Æ÷
-                    enabled: true
-                isolation:
-                    thread:
-                        # ³¬Ê±Ê±¼ä 15s£¬Òª±ÈÆäËû×é¼þÊ±¼ä³¤£¬²»È»ÖØÊÔ»úÖÆ¾Í²»Æð×÷ÓÃÁË
-                        timeoutInMilliseconds: 5000
+  command:
+    default:
+      execution:
+        timeout:
+          # ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½Â·ï¿½ï¿½
+          enabled: true
+        isolation:
+          thread:
+            # ï¿½ï¿½Ê±Ê±ï¿½ï¿½ 15sï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä³¤ï¿½ï¿½ï¿½ï¿½È»ï¿½ï¿½ï¿½Ô»ï¿½ï¿½Æ¾Í²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            timeoutInMilliseconds: 5000
 
 
 logback:
-    project:
-        level: DEBUG
-    spring:
-        level: INFO
+  project:
+    level: DEBUG
+  spring:
+    level: INFO

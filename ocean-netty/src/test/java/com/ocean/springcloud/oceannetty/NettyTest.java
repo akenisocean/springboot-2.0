@@ -10,7 +10,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 /**
  * @author 季超
  * @create 2018-11-09 18:27
- * @desc  netty编写
+ * @desc netty编写
  **/
 public class NettyTest {
     public static void main(String[] args) throws InterruptedException {
@@ -24,7 +24,7 @@ public class NettyTest {
             //设置该启动类
             //netty服务器的创建，ServerBootstrap是一个启动类
             ServerBootstrap serverBootstrap = new ServerBootstrap();
-            serverBootstrap.group(bossGroup,workerGroup).//设置主从线程组
+            serverBootstrap.group(bossGroup, workerGroup).//设置主从线程组
                     channel(NioServerSocketChannel.class)//设置Nio的双向通道
                     .childHandler(new HelloServerInitializer()); //子处理器，用于处理workerGroup
 

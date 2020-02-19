@@ -13,12 +13,12 @@ public class Main {
             System.out.println(lin);
 
         }
-        lin.add(2,666);
+        lin.add(2, 666);
         System.out.println(lin);
 
 
         Integer remove = lin.remove(3);
-        System.out.println("删除的数据为:"+remove);
+        System.out.println("删除的数据为:" + remove);
         System.out.println(lin);
     }
 }

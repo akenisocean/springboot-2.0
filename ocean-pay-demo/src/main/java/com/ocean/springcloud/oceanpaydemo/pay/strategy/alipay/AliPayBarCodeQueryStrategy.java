@@ -34,7 +34,7 @@ public class AliPayBarCodeQueryStrategy extends AbstractAliPayStrategy<AliPayBar
             log.error("支付宝条码支付出错：{}", ExceptionUtils.getFullStackTrace(e));
             throw new RuntimeException("支付错误");
         }
-        if (null == tradeQueryResponse){
+        if (null == tradeQueryResponse) {
             throw new RuntimeException("支付错误");
         }
         String body = tradeQueryResponse.getBody();

@@ -61,7 +61,7 @@ public class ShootPractice {
         //指定事件后停止打靶
         Thread.sleep(lasting * 1000);
         stop();
-        for (Thread t: threads){
+        for (Thread t : threads) {
             t.join();
         }
         System.out.println("Practice finished");

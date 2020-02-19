@@ -26,7 +26,7 @@ public enum ResponseCode {
     USER_NOT_EXISTS(20004, "用户不存在"),
     WRONG_PASSWORD(20005, "密码错误"),
 
-        // 订单模块 4xxxx
+    // 订单模块 4xxxx
 
     ;
 

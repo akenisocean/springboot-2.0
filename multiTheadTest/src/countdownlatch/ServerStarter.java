@@ -14,9 +14,9 @@ public class ServerStarter {
         boolean allIsOk;
         //在所有其他操作执行结束之后，检测服务启动状态
         allIsOk = ServerManager.checkServiceStatus();
-        if (allIsOk){
+        if (allIsOk) {
             System.out.println("All Services were successfully started!");
-        }else {
+        } else {
             //个别服务启动失败，推出JVM
             System.err.println("Some service(s) failed to start,exiting JVM...");
             System.exit(1);

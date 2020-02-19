@@ -14,7 +14,7 @@ public class FeignDefaultConfiguration {
 
 
     @Bean
-    public BasicAuthRequestInterceptor basicAuthRequestInterceptor(){
-        return new BasicAuthRequestInterceptor("ocean","ocean");
+    public BasicAuthRequestInterceptor basicAuthRequestInterceptor() {
+        return new BasicAuthRequestInterceptor("ocean", "ocean");
     }
 }

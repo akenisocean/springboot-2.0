@@ -20,45 +20,46 @@ import java.util.UUID;
 @SpringBootTest
 public class OceanRabbitmqConsumerApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
-	@Autowired
-	private RabbitSender rabbitSender;
+    @Test
+    public void contextLoads() {
+    }
 
-	private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+    @Autowired
+    private RabbitSender rabbitSender;
 
-	@Test
-	public void testSender1() throws Exception {
-		Map<String, Object> properties = new HashMap<>();
-		properties.put("number", "12345");
-		properties.put("send_time", simpleDateFormat.format(new Date()));
-		rabbitSender.send("Hello RabbitMQ For Spring Boot!", properties);
-	}
+    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
-
-	@Autowired
-	private RabbitOrderSender rabbitOrderSender;
-
-	@Test
-	public void testSender2() throws Exception {
-		Order order = new Order();
-		order.setId("2018080400000001");
-		order.setName("测试订单");
-		order.setMessageId(System.currentTimeMillis() + "$" + UUID.randomUUID().toString());
-		rabbitOrderSender.sendOrder(order);
-	}
+    @Test
+    public void testSender1() throws Exception {
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("number", "12345");
+        properties.put("send_time", simpleDateFormat.format(new Date()));
+        rabbitSender.send("Hello RabbitMQ For Spring Boot!", properties);
+    }
 
 
-	@Autowired
-	private OrderService orderService;
+    @Autowired
+    private RabbitOrderSender rabbitOrderSender;
 
-	@Test
-	public void testCreateOrder() throws Exception {
-		Order order = new Order();
-		order.setId("2018080400000005");
-		order.setName("测试创建订单");
-		order.setMessageId(System.currentTimeMillis() + "$" + UUID.randomUUID().toString());
-		orderService.createOrder(order);
-	}
+    @Test
+    public void testSender2() throws Exception {
+        Order order = new Order();
+        order.setId("2018080400000001");
+        order.setName("测试订单");
+        order.setMessageId(System.currentTimeMillis() + "$" + UUID.randomUUID().toString());
+        rabbitOrderSender.sendOrder(order);
+    }
+
+
+    @Autowired
+    private OrderService orderService;
+
+    @Test
+    public void testCreateOrder() throws Exception {
+        Order order = new Order();
+        order.setId("2018080400000005");
+        order.setName("测试创建订单");
+        order.setMessageId(System.currentTimeMillis() + "$" + UUID.randomUUID().toString());
+        orderService.createOrder(order);
+    }
 }

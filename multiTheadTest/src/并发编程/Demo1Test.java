@@ -15,6 +15,7 @@ public class Demo1Test {
     private static int clientTotal = 5000;
 
     private static long count = 0;
+
     public static void main(String[] args) {
         ExecutorService exec = Executors.newCachedThreadPool();
         final Semaphore semaphore = new Semaphore(threadTotal);
@@ -25,13 +26,13 @@ public class Demo1Test {
                     add();
                     semaphore.release();
                 } catch (InterruptedException e) {
-                    System.err.println("Exception:"+e);
+                    System.err.println("Exception:" + e);
                 }
 
             });
         }
         exec.shutdown();
-        System.out.println("count:"+count);
+        System.out.println("count:" + count);
 
     }
 

@@ -128,4 +128,3 @@ hystrix.command.default.execution.isolation.strategy: THREAD
 hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 2000
 #  Hystrix的默认最大超时时间为1秒钟
 hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 1000
-

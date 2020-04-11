@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  eureka-server:
+    image: registry.cn-shanghai.aliyuncs.com/happygiraffe/ocean-eureka:1.0.0
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+#      placement:
+#        constraints: [node.role == worker]
+    ports:
+      - "8761:8761"
+    networks:
+      ocean-overlay-network:
+        - aliases:
+            - eureka-server
+    environment:
+#  设置环境变量
+      - "ADDTIONAL_EUREKA_SERVER_LIST="
+      - "spring.profiles.active=swarm"

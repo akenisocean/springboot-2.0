@@ -1,0 +1,13 @@
+server:
+  port: 18001
+spring:
+  application:
+    name: ocean-gateway
+  profiles:
+    active: @maven.profiles.activation@
+
+info:
+  app:
+    name: ${spring.application.name}
+    description: ocean gateway网管
+    version: @project.version@

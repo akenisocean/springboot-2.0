@@ -23,15 +23,8 @@ public class KfkaProducer {
     private Gson gson = new GsonBuilder().create();
 
     //发送消息方法
-    public void send() {
-        for(int i=0;i<5;i++){
-            Message message = new Message();
-            message.setId(System.currentTimeMillis());
-            message.setMsg(UUID.randomUUID().toString()+ "---" +i);
-            message.setSendTime(new Date());
-            logger.info("发送消息 ----->>>>>  message = {}", gson.toJson(message));
-            kafkaTemplate.send("alert_monitor_topic", gson.toJson(message));
-        }
+    public void send(String message) {
+        kafkaTemplate.send("resource_monitor_topic",message);
     }
 
 

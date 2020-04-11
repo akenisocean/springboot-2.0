@@ -7,8 +7,6 @@ spring:
     user:
       name: ocean
       password: ocean
-eureka:
-  client:
-    service-url:
-      defaultZone: http://39.108.9.37:8761/eureka/
+  profiles:
+    active: @maven.profiles.activation@
 

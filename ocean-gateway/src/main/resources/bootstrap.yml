@@ -5,15 +5,17 @@ spring:
     name: ocean-gateway
   profiles:
     active: @maven.profiles.activation@
+
 info:
-  version: @project.version@
-
-
+  app:
+    name: ${spring.application.name}
+    description: ocean gateway网管
+    version: @project.version@
 #  配置注册中心地址,一定要放在gateway配置前面，否则可能出现服务找不到的情况
 eureka:
   client:
     service-url:
-      defaultZone: http://39.108.9.37:8761/eureka
+      defaultZone: http://192.168.1.114:8761/eureka
   instance:
     prefer-ip-address: true
 management:

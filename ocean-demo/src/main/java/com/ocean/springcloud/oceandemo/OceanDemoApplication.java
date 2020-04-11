@@ -8,7 +8,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Set;
 
-
 @SpringBootApplication
 //@EnableApolloConfig(value = {"application.yml"})
 public class OceanDemoApplication {

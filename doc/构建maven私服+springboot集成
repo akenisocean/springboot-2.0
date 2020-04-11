@@ -110,7 +110,7 @@ http://{ip}:8081/
 
 2. 在项目的`pom.xml`配置文件中添加如下内容:
 ```xml
-<!--mvn deploy上床代码时指定的仓库地址指定仓库地址-->
+<!--mvn deploy上传代码时指定的仓库地址指定仓库地址-->
     <distributionManagement>
         <!--release仓库配置-->
         <repository>

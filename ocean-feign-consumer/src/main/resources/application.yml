@@ -1,39 +1,17 @@
+
+
+
 server:
   port: 9200
 spring:
   application:
     name: ocean-feign-consumer
+  profiles:
+    active: @maven.profiles.activation@
 eureka:
   client:
     service-url:
-      defaultZone: http://39.108.9.37:8761/eureka/
-feign:
-  client:
-    config:
-      ocean-feign-provider:
-        connectTimeout: 3000
-        readTimeout: 4000
-        loggerLevel: FULL
-
-      ocean-feign-provider2:
-        connectTimeout: 3000
-        readTimeout: 7000
-        loggerLevel: basic
-  hystrix:
-    enabled: true
-
-
-hystrix:
-  command:
-    default:
-      execution:
-        timeout:
-          # �Ƿ����ö�·��
-          enabled: true
-        isolation:
-          thread:
-            # ��ʱʱ�� 15s��Ҫ���������ʱ�䳤����Ȼ���Ի��ƾͲ���������
-            timeoutInMilliseconds: 5000
+      defaultZone: http://192.168.1.114:8761/eureka/
 
 
 logback:

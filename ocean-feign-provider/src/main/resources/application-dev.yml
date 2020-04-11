@@ -1,0 +1,51 @@
+eureka:
+  client:
+    service-url:
+       defaultZone: http://192.168.1.114:8761/eureka
+  instance:
+    prefer-ip-address: true
+
+logging:
+  level:
+    com.ocean.springcloud.oceanfeignprovider: debug
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: FULL
+        retryer: com.ocean.springcloud.oceanfeignprovider.feign.FeignRetryer
+        connectTimeout: 5000
+        readTimeout: 12000
+      consumer-feign1:
+        loggerLevel: BASIC
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            #目前有两个容器实例，单个请求超时5s,+重试>10s，超15s则熔断
+            timeoutInMilliseconds: 12000
+        timeout:
+          enabled: true
+
+ribbon:
+  # 项目启动时就加载
+  eager-load:
+    enabled: true
+  http:
+    client:
+      enabled: true
+  okhttp:
+    enabled: false
+
+consumer-feign2:
+  ribbon:
+    MaxAutoRetries: 2
+    MaxAutoRetriesNextServer: 2
+    ConnectTimeout: 3000
+    # 对所有操作请求都进行重试
+    OkToRetryOnAllOperations: true

@@ -1,0 +1,27 @@
+feign:
+  client:
+    config:
+      ocean-feign-provider:
+        connectTimeout: 3000
+        readTimeout: 4000
+        loggerLevel: FULL
+
+      ocean-feign-provider2:
+        connectTimeout: 3000
+        readTimeout: 7000
+        loggerLevel: basic
+  hystrix:
+    enabled: true
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          # �Ƿ����ö�·��
+          enabled: true
+        isolation:
+          thread:
+            # ��ʱʱ�� 15s��Ҫ���������ʱ�䳤����Ȼ���Ի��ƾͲ���������
+            timeoutInMilliseconds: 5000

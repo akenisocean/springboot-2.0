@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.ocean.springcloud.autoconfig.ZookeeperAutoConfig, \
+com.ocean.springcloud.autoconfig.SimpleJobAutoConfig, \
+com.ocean.springcloud.autoconfig.DataflowJobAutoConfig, \
+com.ocean.springcloud.autoconfig.ScriptJobAutoConfig

@@ -2,6 +2,7 @@ package com.ocean.springcloud.oceankafka;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,10 +18,10 @@ public class KafkaTestController {
     @Autowired
     private KfkaProducer producer;
 
-    @RequestMapping("/testSendMsg")
+    @PostMapping("/testSendMsg")
     @ResponseBody
-    public String testSendMsg(){
-        producer.send();
+    public String testSendMsg(String test){
+        producer.send(test);
         return "success";
     }
 }

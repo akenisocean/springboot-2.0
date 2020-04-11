@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.ocean.springcloud</groupId>
         <artifactId>spring-cloud-docker-in-action</artifactId>
-        <version>1.0</version>
+        <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -60,6 +60,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.ocean.springcloud.oceanhystrixconsumer.OceanHystrixConsumerApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>

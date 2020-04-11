@@ -16,7 +16,7 @@
     </appender>
     <!-- 文件输出日志 (文件大小策略进行文件输出，超过指定大小对文件备份) -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>/log/server/xinqiuboche.server.${spring.application.name}.${byTime}.log</File>
+        <File>/data/logs/${spring.application.name}.${byTime}.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
             <FileNamePattern>/log/server/zip/xinqiuboche_log.${spring.application.name}.${byTime}.%i.zip
             </FileNamePattern>

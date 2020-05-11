@@ -1,0 +1,15 @@
+server:
+  port: 23333
+spring:
+  application:
+    name: ocean-elasticsearch
+  elasticsearch:
+    rest:
+      uris: http://192.168.3.7:9200
+      connection-timeout: 3s
+  data:
+    elasticsearch:
+      client:
+        reactive:
+          endpoints:
+            - 192.168.3.7:9200

@@ -9,6 +9,7 @@ import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 /**
@@ -45,6 +46,5 @@ public class KafkaReceiver {
             acknowledgment.acknowledge();
         }
     }
-
 
 }

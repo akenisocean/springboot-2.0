@@ -1,9 +1,9 @@
 spring:
   rabbitmq:
-    host: 39.108.9.37
+    host: 192.168.3.7
     port: 5672
-    username: dachao
-    password: 123456
+    username: jkstack
+    password: 123qweASD
     virtual-host: /
     listener:
       simple:
@@ -23,5 +23,13 @@ spring:
       mandatory: true
   # redis配置
   redis:
-    host: 39.108.9.37
+    host: 192.168.1.114
     port: 7005
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.1.114:8761/eureka/
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+    prefer-ip-address: true

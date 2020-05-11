@@ -39,6 +39,7 @@
         <mysql-connection.version>6.0.6</mysql-connection.version>
         <mybatis-plus.version>3.3.1</mybatis-plus.version>
         <curator.version>2.10.0</curator.version>
+        <mybatis-generator.plugin.version>1.3.7</mybatis-generator.plugin.version>
     </properties>
     <!--添加对应的模块-->
     <modules>
@@ -59,6 +60,8 @@
         <module>ocean-stream</module>
         <module>ocean-atomikos-druid</module>
         <module>ocean-elasticjob</module>
+        <module>ocean-elasticsearch</module>
+        <module>ocean-rabbitmq-consumer</module>
     </modules>
 
     <dependencyManagement>
@@ -106,6 +109,12 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>${mybatis-generator.plugin.version}</version>
             </dependency>
 
         </dependencies>

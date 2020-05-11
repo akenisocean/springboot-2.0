@@ -4,6 +4,7 @@ import com.ocean.springcloud.oceanmail.entity.EmailInhibition;
 import com.ocean.springcloud.oceanmail.entity.EmailInhibitionParam;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -63,7 +64,7 @@ public class FreemarkerController {
                     .title("告警源:资源监控   业务级别：A类邮件，Windows    告警等级：严重Linux-生产  监控指标：CPU负载过高")
                     .build();
 
-            List<EmailInhibitionParam> emailInhibtionList = new ArrayList<>();
+            List<EmailInhibitionParam> emailInhibitionList = new ArrayList<>();
             for (int i = 0; i < 3; i++) {
                 TreeMap<String, List<String>> map = new TreeMap<>();
                 map.put("哈哈",Arrays.asList("严重","A类邮件，Windows","Server"));
@@ -74,16 +75,14 @@ public class FreemarkerController {
                         .tagTitles(Arrays.asList("告警级别", "业务级别", "主机名"))
                         .tagParams(map)
                         .build();
-                emailInhibtionList.add(build);
+                emailInhibitionList.add(build);
             }
-
-
+            emailInhibtion.setEmailInhibitionParamList(emailInhibitionList);
 
             Map<String, Object> model = new HashMap();
             model.put("emailInhibition", emailInhibtion);
-            model.put("emailInhibitionList", emailInhibtionList);
             try {
-                Template template = configuration.getTemplate("freemarker.ftl");
+                Template template = configuration.getTemplate("temp2.ftl");
                 String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
                 helper.setText(html, true);
             } catch (Exception e) {
@@ -128,6 +127,38 @@ public class FreemarkerController {
         user.setMap(map);
 
         return user;
+    }
+
+
+    @SneakyThrows
+    @RequestMapping("/show2")
+    public String show2(@RequestParam(value = "free", defaultValue = "hahaha") String free) {
+        MimeMessage message = jms.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+        helper.setFrom("jc164214878@163.com");
+        helper.setTo("jc164214878@163.com");
+        helper.setSubject("使用模板");
+        List<EmailValueRange> emailValueRanges = new ArrayList<>();
+        EmailValueRange build1 = EmailValueRange.builder().titleName("titleName").titleValue("titleValue").build();
+        EmailValueRange build2 = EmailValueRange.builder().titleName("titleName").titleValue("titleValue").build();
+        emailValueRanges.add(build2);
+        emailValueRanges.add(build1);
+        SingleEmailInhibition emailInhibtion = SingleEmailInhibition.builder()
+                .title("laji")
+                .valueRange(emailValueRanges).build();
+
+
+        Map<String, Object> model = new HashMap(1);
+        model.put("singleEmailInhibition", emailInhibtion);
+        try {
+            Template template = configuration.getTemplate("emailTemplate.ftl");
+            String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
+            helper.setText(html, true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "";
     }
 
 }

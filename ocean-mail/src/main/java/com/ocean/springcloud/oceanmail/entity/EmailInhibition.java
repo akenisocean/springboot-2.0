@@ -30,7 +30,7 @@ public class EmailInhibition {
      */
     private String title;
 
-    private List<EmailInhibition> emailInhibitionList;
+    private List<EmailInhibitionParam> emailInhibitionParamList;
 
 
 

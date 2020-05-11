@@ -1,7 +1,7 @@
 FROM openjdk:8-jdk-alpine
 MAINTAINER dachao <jc164214878@163.com>
 #　设置版本号
-ENV VERSION 1.0
+ENV VERSION 1.0.0
 RUN echo "http://mirrors.aliyun.com/alpine/v3.8/main" > /etc/apk/repositories \
     && echo "http://mirrors.aliyun.com/alpine/v3.8/community" >> /etc/apk/repositories \
     && apk update upgrade \

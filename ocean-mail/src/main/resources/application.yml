@@ -5,6 +5,7 @@ spring:
     password: a164214878
 #    port: 465
     test-connection: true
+    port: 25
   thymeleaf:
     cache: false
     encoding: UTF-8

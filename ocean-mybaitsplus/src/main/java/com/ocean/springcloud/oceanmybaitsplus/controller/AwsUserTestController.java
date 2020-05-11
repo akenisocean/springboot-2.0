@@ -9,10 +9,9 @@ import com.ocean.springcloud.oceanmybaitsplus.dao.CallbackFieldMapper;
 import com.ocean.springcloud.oceanmybaitsplus.entity.AwsUser;
 import com.ocean.springcloud.oceanmybaitsplus.entity.CallbackField;
 import com.ocean.springcloud.oceanmybaitsplus.rsa.RSAUtils;
+import com.ocean.springcloud.oceanmybaitsplus.service.AwsUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.PublicKey;
 import java.util.ArrayList;
@@ -51,6 +50,15 @@ public class AwsUserTestController {
     public List<AwsUser> getAll2() {
         QueryWrapper<AwsUser> queryWrapper = new QueryWrapper<>();
         List<AwsUser> awsUsers = awsUserMapper.selectList(queryWrapper);
+        return awsUsers;
+    }
+
+
+    @Autowired
+    AwsUserService awsUserService;
+    @PostMapping("/awsUserService")
+    public List<AwsUser> getAll2(@RequestBody List<AwsUser> awsUsers) {
+        awsUserService.batchInsertAwsUser(awsUsers);
         return awsUsers;
     }
 

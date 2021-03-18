@@ -96,6 +96,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>monitor-user-into</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: ocean-prometheus
+
+management:
+  endpoints:
+    # 问监控权限开启
+    web:
+      exposure:
+        include: '*'
+    # 指标监控开启
+    jmx:
+      exposure:
+        include: '*'
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  endpoint:
+    shutdown:
+      enabled: true
+info:
+  author: jack
+

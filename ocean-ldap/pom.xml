@@ -5,8 +5,7 @@
 	<parent>
 		<groupId>com.ocean.springcloud</groupId>
 		<artifactId>spring-cloud-docker-in-action</artifactId>
-		<version>1.0</version>
-		<relativePath>../pom.xml</relativePath>
+		<version>1.0.0</version>
 	</parent>
 	<artifactId>ocean-ldap</artifactId>
 	<name>ocean-ldap</name>

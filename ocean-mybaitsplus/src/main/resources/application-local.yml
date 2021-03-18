@@ -1,15 +1,15 @@
 # 配置端口
 server:
-  port: 18000
+  port: 18001
   servlet:
     context-path: /message
 spring:
   # 配置数据源
   datasource:
     driver: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/new-monitor2?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://192.168.3.114:3306/new-monitor?useUnicode=true&characterEncoding=utf-8
     username: root
-    password: root
+    password: 123qweASD
     type: com.zaxxer.hikari.HikariDataSource
 # mybatis-plus相关配置
 mybatis-plus:

@@ -1,0 +1,32 @@
+server:
+  port: 12000
+
+spring:
+  application:
+    name: ocean-kafka-springboot
+  kafka:
+    bootstrap-servers: 192.168.3.115:9566
+    consumer:
+      group-id: jack-chao
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # 消费者的补偿是否在后台定期提交。
+      enable-auto-commit: false
+      auto-offset-reset: earliest
+    producer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # 0: 不等待kafka进行回复就提交，可能会丢失数据  1:不等副本完成就提交  all:等待全部回复才提交
+      acks: all
+      compression-type: gzip
+    listener:
+      # 设置监听端为手动提交
+      ack-mode: manual_immediate
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    jmx:
+      exposure:
+        include: '*'

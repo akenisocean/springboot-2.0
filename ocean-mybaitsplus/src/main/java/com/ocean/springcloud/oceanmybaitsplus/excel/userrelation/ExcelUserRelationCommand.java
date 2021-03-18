@@ -67,77 +67,77 @@ public class ExcelUserRelationCommand {
                     if(StringUtils.isNotBlank(model.getLoginName1())){
                         String loginName = model.getLoginName1();
                         Long uId = getUserIdByUserLoginName(loginName);
-                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).build();
+                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).uType("3").build();
                         bachUserRelationList.add(userRe);
                     }
 
                     if(StringUtils.isNotBlank(model.getLoginName2())){
                         String loginName = model.getLoginName2();
                         Long uId = getUserIdByUserLoginName(loginName);
-                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).build();
+                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).uType("3").build();
                         bachUserRelationList.add(userRe);
                     }
 
                     if(StringUtils.isNotBlank(model.getLoginName3())){
                         String loginName = model.getLoginName3();
                         Long uId = getUserIdByUserLoginName(loginName);
-                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).build();
+                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).uType("3").build();
                         bachUserRelationList.add(userRe);
                     }
 
                     if(StringUtils.isNotBlank(model.getLoginName4())){
                         String loginName = model.getLoginName4();
                         Long uId = getUserIdByUserLoginName(loginName);
-                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).build();
+                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).uType("3").build();
                         bachUserRelationList.add(userRe);
                     }
 
                     if(StringUtils.isNotBlank(model.getLoginName5())){
                         String loginName = model.getLoginName5();
                         Long uId = getUserIdByUserLoginName(loginName);
-                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).build();
+                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).uType("3").build();
                         bachUserRelationList.add(userRe);
                     }
 
                     if(StringUtils.isNotBlank(model.getLoginName6())){
                         String loginName = model.getLoginName6();
                         Long uId = getUserIdByUserLoginName(loginName);
-                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).build();
+                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).uType("3").build();
                         bachUserRelationList.add(userRe);
                     }
 
                     if(StringUtils.isNotBlank(model.getLoginName7())){
                         String loginName = model.getLoginName7();
                         Long uId = getUserIdByUserLoginName(loginName);
-                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).build();
+                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).uType("3").build();
                         bachUserRelationList.add(userRe);
                     }
 
                     if(StringUtils.isNotBlank(model.getLoginName8())){
                         String loginName = model.getLoginName8();
                         Long uId = getUserIdByUserLoginName(loginName);
-                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).build();
+                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).uType("3").build();
                         bachUserRelationList.add(userRe);
                     }
 
                     if(StringUtils.isNotBlank(model.getLoginName9())){
                         String loginName = model.getLoginName9();
                         Long uId = getUserIdByUserLoginName(loginName);
-                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).build();
+                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).uType("3").build();
                         bachUserRelationList.add(userRe);
                     }
 
                     if(StringUtils.isNotBlank(model.getLoginName10())){
                         String loginName = model.getLoginName10();
                         Long uId = getUserIdByUserLoginName(loginName);
-                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).build();
+                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).uType("3").build();
                         bachUserRelationList.add(userRe);
                     }
 
                     if(StringUtils.isNotBlank(model.getLoginName11())){
                         String loginName = model.getLoginName11();
                         Long uId = getUserIdByUserLoginName(loginName);
-                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).build();
+                        UserRelation userRe = UserRelation.builder().uId(uId).ugroupId(ugroupId).uType("3").build();
                         bachUserRelationList.add(userRe);
                     }
 
@@ -164,13 +164,20 @@ public class ExcelUserRelationCommand {
     }
 
     private void doSendMessage(List<UserRelation> batchUserRelationList) {
+        List<UserRelation> alredyInsertRelationNameList = new ArrayList<>();
+        List<UserRelation> duplicateInsertRelationNameList = new ArrayList<>();
         batchUserRelationList.forEach(userRelation -> {
             try {
                 userRelationMapper.insert(userRelation);
+                alredyInsertRelationNameList.add(userRelation);
             } catch (Exception e) {
                 log.error(e.getMessage());
+                duplicateInsertRelationNameList.add(userRelation);
             }
         });
+        System.out.println("----------------------------adaadada-----------------------------");
+        log.info("已添加用户组名称集合:{}",alredyInsertRelationNameList.toString());
+        log.info("重复用户组名称集合:{}",duplicateInsertRelationNameList.toString());
     }
 
 

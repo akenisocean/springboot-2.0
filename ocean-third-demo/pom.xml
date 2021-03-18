@@ -58,32 +58,8 @@
 			<artifactId>fastjson</artifactId>
 			<version>${fastjson.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.ocean.springcloud</groupId>
-			<artifactId>ocean-third-demo</artifactId>
-			<version>1.0.0</version>
-		</dependency>
 
 	</dependencies>
-
-	<repositories>
-		<repository>
-			<id>jkstack</id>
-			<url>http://192.168.1.114:8081/repository/jkstack-group/</url>
-		</repository>
-		<repository>
-			<id>jkstack</id>
-			<url>http://192.168.1.114:8081/repository/jkstack-maven/</url>
-		</repository>
-	</repositories>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>jkstack</id>
-			<url>http://192.168.1.114:8081/repository/jkstack-maven/</url>
-		</pluginRepository>
-	</pluginRepositories>
-
 
 
 

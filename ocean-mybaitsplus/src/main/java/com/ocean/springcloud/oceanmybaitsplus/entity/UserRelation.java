@@ -20,4 +20,5 @@ import java.io.Serializable;
 public class UserRelation implements Serializable {
     private Long uId;
     private Long ugroupId;
+    private String uType;
 }

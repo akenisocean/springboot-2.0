@@ -11,9 +11,9 @@ RUN echo "http://mirrors.aliyun.com/alpine/v3.8/main" > /etc/apk/repositories \
 #    设置工作目录
 VOLUME /tmp
 #  将打包的jar包放入到/tmp中并成为app.jar
-ADD /ocean-gateway-${VERSION}.jar app.jar
+ADD /ocean-gateway-${VERSION}.jar ocean-gateway-${VERSION}.jar
 #RUN bash -c 'touch /app.jar'
 # 暴露对外端口号
 EXPOSE 18000
 # 执行命令
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/ocean-gateway-${VERSION}.jar"]

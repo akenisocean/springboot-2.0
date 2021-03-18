@@ -47,6 +47,7 @@ public class ExcelUserGroupCommand {
             for (int x = 0; x < mapModelList.size(); x++) {
                 MapExceUserGroupModel model = mapModelList.get(x);
                 UserGroup userGroup = new UserGroup();
+                userGroup.setUType("3");
                 userGroup.setGroupName(model.getGroupName());
 
                 bachUserGroupList.add(userGroup);

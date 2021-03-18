@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.5.RELEASE</version>
+        <version>2.3.3.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -23,7 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <spring-cloud.version>Hoxton.SR1</spring-cloud.version>
+        <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <docker.push.image.name>akenisocean</docker.push.image.name>
         <docker.image.tag>${project.version}</docker.image.tag>
         <!--个人阿里云docker仓库地址-->
@@ -40,17 +40,18 @@
         <mybatis-plus.version>3.3.1</mybatis-plus.version>
         <curator.version>2.10.0</curator.version>
         <mybatis-generator.plugin.version>1.3.7</mybatis-generator.plugin.version>
+        <!--springboot admin监控服务-->
+        <spring-boot-admin.version>2.2.3</spring-boot-admin.version>
+        <spring.shiro.version>1.7</spring.shiro.version>
     </properties>
     <!--添加对应的模块-->
     <modules>
-        <module>ocean-eureka</module>
         <module>ocean-gateway</module>
         <module>ocean-hystrix-consumer</module>
         <module>ocean-hystrix-consumer2</module>
         <module>ocean-rabbit-producer</module>
         <module>ocean-ldap</module>
         <module>common-lib</module>
-        <module>ocean-demo</module>
         <module>ocean-kafka</module>
         <module>ocean-third-demo</module>
         <module>ocean-gateway-zuul</module>
@@ -58,14 +59,27 @@
         <module>ocean-feign-provider</module>
         <module>ocean-mybaitsplus</module>
         <module>ocean-stream</module>
-        <module>ocean-atomikos-druid</module>
-        <module>ocean-elasticjob</module>
+        <module>ocean-feign-provider2</module>
+        <module>ocean-hystrix-provider</module>
         <module>ocean-elasticsearch</module>
         <module>ocean-rabbitmq-consumer</module>
+        <module>ocean-admin-server</module>
+        <module>ocean-kafka-springboot</module>
+        <module>ocean-prometheus</module>
+        <module>ocean-security</module>
+        <module>ocean-shiro</module>
     </modules>
 
+
     <dependencyManagement>
+        <!--shiro安全框架-->
         <dependencies>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>${spring.shiro.version}</version>
+            </dependency>
+
             <!--springcloud-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -73,12 +87,6 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <!--携程apoll开源配置中心-->
-            <dependency>
-                <groupId>com.ctrip.framework.apollo</groupId>
-                <artifactId>apollo-client</artifactId>
-                <version>${apollo.version}</version>
             </dependency>
             <!--阿里巴巴fastjson-->
             <dependency>
@@ -122,11 +130,11 @@
 
     <dependencies>
         <!--公共组件-->
-<!--        <dependency>-->
-<!--            <groupId>com.ocean.springcloud</groupId>-->
-<!--            <artifactId>common-lib</artifactId>-->
-<!--            <version>1.0.0</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.ocean.springcloud</groupId>-->
+        <!--            <artifactId>common-lib</artifactId>-->
+        <!--            <version>1.0.0</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -140,9 +148,45 @@
         <repository>
             <id>jkstack</id>
             <name>jkstakc-私有仓库</name>
-            <url>http://192.168.1.114:8081/repository/jkstack-maven/</url>
+            <url>http://192.168.3.7:8081/repository/jkstack-maven/</url>
         </repository>
     </distributionManagement>
+
+    <repositories>
+
+        <repository>
+            <id>aliyun-repos</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>jcenter</id>
+            <url>http://jcenter.bintray.com</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>jkstack</id>
+            <url>http://192.168.3.7:8081/repository/jkstack-public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>aliyun-plugin</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
 
     <!--环境配置-->
@@ -236,15 +280,14 @@
     </profiles>
 
 
-
     <!--插件-->
     <build>
         <plugins>
             <!-- Spring Boot提供Maven编译插件 -->
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--            </plugin>-->
+            <!--            <plugin>-->
+            <!--                <groupId>org.springframework.boot</groupId>-->
+            <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--            </plugin>-->
             <!-- Maven打包插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

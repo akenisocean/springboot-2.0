@@ -24,4 +24,6 @@ public class UserGroup implements Serializable {
 
     private Integer status;
 
+    private String uType;
+
 }

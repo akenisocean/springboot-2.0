@@ -23,13 +23,13 @@ spring:
       mandatory: true
   # redis配置
   redis:
-    host: 192.168.1.114
+    host: 192.168.3.114
     port: 7005
 
 eureka:
   client:
     service-url:
-      defaultZone: http://192.168.1.114:8761/eureka/
+      defaultZone: http://192.168.3.114:8761/eureka/
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
     prefer-ip-address: true

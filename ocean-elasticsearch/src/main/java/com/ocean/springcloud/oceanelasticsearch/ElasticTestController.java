@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.UUID;
@@ -27,7 +28,7 @@ import static org.elasticsearch.action.support.WriteRequest.RefreshPolicy.IMMEDI
 public class ElasticTestController {
     @Autowired
     RestHighLevelClient highLevelClient;
-    @Autowired
+    @Resource
     ReactiveElasticsearchClient reactiveElasticsearchClient;
 
     @GetMapping("/createIndex")

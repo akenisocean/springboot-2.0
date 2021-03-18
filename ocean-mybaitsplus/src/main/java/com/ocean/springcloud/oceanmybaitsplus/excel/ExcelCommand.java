@@ -48,6 +48,7 @@ public class ExcelCommand {
                     break;
                 }
                 User user = new User();
+                user.setUType("3");
                 Optional.ofNullable(mapExcelModel.getUEmail()).ifPresent(email -> {if(StringUtils.isNotBlank(email)) {
                     email = email.replaceAll("\r|\n", "");
                     StringUtils.deleteWhitespace(email);

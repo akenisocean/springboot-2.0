@@ -42,7 +42,7 @@
         <mybatis-generator.plugin.version>1.3.7</mybatis-generator.plugin.version>
         <!--springboot admin监控服务-->
         <spring-boot-admin.version>2.2.3</spring-boot-admin.version>
-        <spring.shiro.version>1.7</spring.shiro.version>
+        <spring.shiro.version>1.7.0</spring.shiro.version>
     </properties>
     <!--添加对应的模块-->
     <modules>
@@ -50,7 +50,6 @@
         <module>ocean-hystrix-consumer</module>
         <module>ocean-hystrix-consumer2</module>
         <module>ocean-rabbit-producer</module>
-        <module>ocean-ldap</module>
         <module>common-lib</module>
         <module>ocean-kafka</module>
         <module>ocean-third-demo</module>

@@ -9,11 +9,11 @@ import java.util.Optional;
  */
 public class OptionalTests {
     public static void main(String[] args) {
-        Optional<String> hello = Optional.ofNullable("hello");
-        System.out.println(hello.isPresent());
-        System.out.println(hello.isEmpty());
-        System.out.println(hello.map());
-        hello.ifPresentOrElse(System.out::println,()-> System.out.println("world"));
+//        Optional<String> hello = Optional.ofNullable("hello");
+//        System.out.println(hello.isPresent());
+//        System.out.println(hello.isEmpty());
+//        System.out.println(hello.map());
+//        hello.ifPresentOrElse(System.out::println,()-> System.out.println("world"));
 
     }
 }

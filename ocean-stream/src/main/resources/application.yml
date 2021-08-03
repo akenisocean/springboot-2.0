@@ -1,0 +1,7 @@
+server:
+  port: 10000
+spring:
+  redis:
+    host: localhost
+#    password: 123qweASD
+    port: 7005
